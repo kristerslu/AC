@@ -3,85 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DIY Airco Kits | Fix Your Car's AC in 5 Minutes</title>
+    <title>FrostFlow | Professional DIY AC Refill</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;800&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #0f172a; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .gradient-text { background: linear-gradient(90deg, #38bdf8, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    </style>
 </head>
-<body class="bg-gray-50 text-gray-900 font-sans antialiased">
+<body class="text-slate-200">
 
-    <header class="bg-blue-600 text-white">
-        <div class="max-w-5xl mx-auto px-6 py-16 text-center">
-            <h1 class="text-4xl md:text-5xl font-bold mb-4">Ice Cold Car AC in 5 Minutes.</h1>
-            <p class="text-xl mb-8">Skip the €200 garage bill. Refill your car's air conditioning yourself with our safe, easy-to-use R12a DIY Kits. Delivered fast in Belgium & NL.</p>
-            <a href="#buy-now" class="bg-green-500 hover:bg-green-400 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300">
-                Get Your Kit Today
-            </a>
+    <nav class="fixed w-full z-50 glass py-4">
+        <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
+            <div class="text-2xl font-extrabold tracking-tighter"><span class="text-sky-400">Frost</span>Flow</div>
+            <div class="hidden md:flex space-x-8 text-sm font-medium uppercase tracking-widest">
+                <a href="#how" class="hover:text-sky-400 transition">How it works</a>
+                <a href="#buy" class="hover:text-sky-400 transition">The Kit</a>
+            </div>
+            <a href="#buy" class="bg-sky-500 hover:bg-sky-400 text-white px-5 py-2 rounded-full text-sm font-bold transition">Order Now</a>
         </div>
-    </header>
+    </nav>
 
-    <section class="max-w-5xl mx-auto px-6 py-12 text-center">
-        <h2 class="text-3xl font-bold mb-6">Why pay a mechanic when you can do it yourself?</h2>
-        <div class="grid md:grid-cols-3 gap-8 mt-8">
-            <div class="bg-white p-6 rounded-lg shadow-md">
-                <h3 class="font-bold text-xl mb-2 text-blue-600">Cost-Effective</h3>
-                <p>Garages charge up to €200 just to connect the machine. Our complete kit is a fraction of the cost.</p>
+    <section class="relative pt-32 pb-20 px-6 overflow-hidden">
+        <div class="max-w-5xl mx-auto text-center relative z-10">
+            <span class="inline-block px-4 py-1 rounded-full border border-sky-500/30 text-sky-400 text-xs font-bold mb-6 tracking-widest uppercase" x-data="{ show: false }" x-init="setTimeout(() => show = true, 200)" x-show="show" x-transition>Shipping across Belgium & NL</span>
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">Your Car. <br><span class="gradient-text">Sub-Zero Temps.</span></h1>
+            <p class="text-lg text-slate-400 mb-10 max-w-2xl mx-auto">Stop sweating. Fix your car's air conditioning in 5 minutes with our high-performance R12a refill kit. Professional results without the garage bill.</p>
+            <div class="flex flex-col md:flex-row justify-center gap-4">
+                <a href="#buy" class="bg-white text-slate-900 px-10 py-4 rounded-xl font-bold text-lg hover:scale-105 transition-transform">Get the Kit — €49.95</a>
+                <a href="#how" class="glass px-10 py-4 rounded-xl font-bold text-lg hover:bg-white/5 transition">See how it works</a>
             </div>
-            <div class="bg-white p-6 rounded-lg shadow-md">
-                <h3 class="font-bold text-xl mb-2 text-blue-600">Eco-Friendly Gas</h3>
-                <p>We use R12a hydrocarbon gas. It's 100% legal for DIY use, cools faster, and is better for the environment.</p>
+        </div>
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-sky-500/10 blur-[120px] rounded-full -z-10"></div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-6 py-10 grid md:grid-cols-3 gap-12 text-center border-y border-slate-800">
+        <div>
+            <div class="text-3xl font-bold text-white mb-1">5 Mins</div>
+            <div class="text-slate-500 text-sm uppercase tracking-wide">Average Install Time</div>
+        </div>
+        <div>
+            <div class="text-3xl font-bold text-white mb-1">-70%</div>
+            <div class="text-slate-500 text-sm uppercase tracking-wide">Cheaper than Dealerships</div>
+        </div>
+        <div>
+            <div class="text-3xl font-bold text-white mb-1">100%</div>
+            <div class="text-slate-500 text-sm uppercase tracking-wide">EU Legal Hydrocarbon</div>
+        </div>
+    </section>
+
+    <section id="how" class="max-w-6xl mx-auto px-6 py-24">
+        <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center">Three Steps to <span class="text-sky-400">Total Comfort</span></h2>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="glass p-8 rounded-3xl" x-data="{ hover: false }" @mouseenter="hover = true" @mouseleave="hover = false">
+                <div class="w-12 h-12 bg-sky-500 rounded-2xl flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(14,165,233,0.4)]">
+                    <i class="fas fa-search text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-4">1. Locate</h3>
+                <p class="text-slate-400 leading-relaxed">Pop the hood and find the Low-Pressure port (marked with an 'L' cap). It's the only one that fits our safety-valve.</p>
             </div>
-            <div class="bg-white p-6 rounded-lg shadow-md">
-                <h3 class="font-bold text-xl mb-2 text-blue-600">No Experience Needed</h3>
-                <p>If you can inflate a car tire, you can use this kit. Includes a pressure gauge and simple instructions.</p>
+            <div class="glass p-8 rounded-3xl border-t-sky-500/50">
+                <div class="w-12 h-12 bg-indigo-500 rounded-2xl flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(99,102,241,0.4)]">
+                    <i class="fas fa-plug text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-4">2. Connect</h3>
+                <p class="text-slate-400 leading-relaxed">Snap the quick-connect hose onto the port and check your current pressure on the built-in gauge.</p>
+            </div>
+            <div class="glass p-8 rounded-3xl">
+                <div class="w-12 h-12 bg-emerald-500 rounded-2xl flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(16,185,129,0.4)]">
+                    <i class="fas fa-snowflake text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-4">3. Fill</h3>
+                <p class="text-slate-400 leading-relaxed">Start the engine, AC on max, and squeeze the trigger until the needle hits the green zone. You're done.</p>
             </div>
         </div>
     </section>
 
-    <section class="bg-gray-200 py-12">
-        <div class="max-w-5xl mx-auto px-6">
-            <h2 class="text-3xl font-bold text-center mb-8">How It Works</h2>
-            <div class="space-y-6">
-                <div class="flex items-center space-x-4 bg-white p-4 rounded-lg shadow-sm">
-                    <div class="bg-blue-600 text-white rounded-full h-10 w-10 flex items-center justify-center font-bold text-xl flex-shrink-0">1</div>
-                    <p class="text-lg"><strong>Find the Low-Pressure Port:</strong> Open your hood and locate the AC pipe with the "L" cap.</p>
+    <section id="buy" class="max-w-4xl mx-auto px-6 py-24">
+        <div class="relative glass rounded-[40px] p-10 md:p-16 overflow-hidden">
+            <div class="relative z-10 grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-4xl font-bold mb-4 text-white">The FrostFlow Kit</h2>
+                    <p class="text-slate-400 mb-6 font-medium italic">Available for R134a & R1234yf systems.</p>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-emerald-400"></i> High-Purity Replacement Gas</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-emerald-400"></i> Pro-Grade Gauge & Hose</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-emerald-400"></i> Instructions in NL/FR/EN</li>
+                    </ul>
                 </div>
-                <div class="flex items-center space-x-4 bg-white p-4 rounded-lg shadow-sm">
-                    <div class="bg-blue-600 text-white rounded-full h-10 w-10 flex items-center justify-center font-bold text-xl flex-shrink-0">2</div>
-                    <p class="text-lg"><strong>Connect the Gauge:</strong> Snap the provided hose onto the port. Start your car and turn the AC to max cold.</p>
-                </div>
-                <div class="flex items-center space-x-4 bg-white p-4 rounded-lg shadow-sm">
-                    <div class="bg-blue-600 text-white rounded-full h-10 w-10 flex items-center justify-center font-bold text-xl flex-shrink-0">3</div>
-                    <p class="text-lg"><strong>Fill to the Green Zone:</strong> Squeeze the trigger until the gauge needle sits perfectly in the green area. Enjoy the cold air!</p>
+                <div class="text-center">
+                    <div class="text-6xl font-black text-white mb-2">€49.95</div>
+                    <p class="text-slate-400 mb-8 uppercase tracking-tighter">Fast Shipping Included</p>
+                    <a href="YOUR_MOLLIE_LINK_HERE" class="block w-full bg-sky-500 hover:bg-sky-400 text-white font-extrabold py-5 rounded-2xl text-xl shadow-[0_20px_40px_rgba(14,165,233,0.3)] transition-all transform hover:-translate-y-1">
+                        Order with iDEAL / Bancontact
+                    </a>
+                    <div class="flex justify-center gap-4 mt-6 grayscale opacity-50">
+                        <i class="fab fa-cc-visa text-2xl"></i>
+                        <i class="fab fa-apple-pay text-2xl"></i>
+                        <i class="fas fa-university text-2xl"></i> </div>
                 </div>
             </div>
+            <div class="absolute -bottom-20 -right-20 w-64 h-64 bg-sky-500/20 blur-[80px] rounded-full"></div>
         </div>
     </section>
 
-    <section id="buy-now" class="max-w-4xl mx-auto px-6 py-16 text-center">
-        <h2 class="text-3xl font-bold mb-4">Ready to cool down?</h2>
-        <p class="mb-8 text-lg">Includes 1x Gas Canister, 1x Reusable Hose with Pressure Gauge, and step-by-step instructions.</p>
-        
-        <div class="bg-white border-2 border-blue-600 rounded-xl p-8 max-w-md mx-auto shadow-xl">
-            <h3 class="text-2xl font-bold mb-2">Complete DIY Kit</h3>
-            <p class="text-4xl font-extrabold text-gray-900 mb-6">€49.95</p>
-            <ul class="text-left mb-6 space-y-2">
-                <li>✅ Free Shipping in Belgium & NL</li>
-                <li>✅ Fast Delivery (1-2 days)</li>
-                <li>✅ Works on R134a systems</li>
-            </ul>
-            
-            <a href="#" class="block w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg text-center transition duration-300">
-                Pay with Bancontact / iDEAL
-            </a>
-            <p class="text-sm text-gray-500 mt-4">Secure checkout powered by Mollie.</p>
-        </div>
-    </section>
-
-    <footer class="bg-gray-800 text-gray-400 py-8 text-center">
-        <div class="max-w-5xl mx-auto px-6">
-            <p>&copy; 2026 DIY Airco Kits. All rights reserved.</p>
-            <p class="text-sm mt-2">Questions? Email us at info@yourdomain.be</p>
-            <p class="text-xs mt-4">Note: Hydrocarbon R12a is a safe, legal replacement for automotive air conditioning. Always follow the included safety instructions.</p>
-        </div>
+    <footer class="py-12 text-center text-slate-500 text-sm">
+        <div class="mb-4 font-bold text-slate-300">FrostFlow Benelux</div>
+        <p>&copy; 2026. Safety Data Sheets (SDS) available on request.</p>
     </footer>
 
 </body>
