@@ -1,47 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VrisAirco | Premium Car AC Refill Kits in Benelux</title>
+    <title>VrisAirco | Premium Auto Airco Vulsets</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
         body { font-family: 'Inter', sans-serif; }
+
+        /* Custom Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(25px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fade-in-up {
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        .delay-400 { animation-delay: 400ms; }
+        .delay-500 { animation-delay: 500ms; }
     </style>
 </head>
-<body class="bg-slate-900 text-slate-100 flex flex-col min-h-screen">
+<body class="bg-slate-900 text-slate-100 flex flex-col min-h-screen overflow-x-hidden">
 
     <nav class="w-full bg-slate-950/80 backdrop-blur-md fixed top-0 z-50 border-b border-slate-800">
         <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="text-2xl font-extrabold tracking-widest uppercase italic cursor-pointer">
-                VRIS<span class="text-sky-400">AIRCO</span>
+            
+            <div class="flex items-center gap-2 cursor-pointer group">
+                <svg class="w-7 h-7 text-sky-400 group-hover:rotate-180 transition-transform duration-700 ease-in-out" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v18m0-18l-3 3m3-3l3 3m-3 15l-3-3m3 3l3-3M6.545 6.545l12.728 12.728m0-12.728L6.545 19.273M4.455 12H19.5m-15.045 0l3-3m-3 3l3 3m12.045-3l-3-3m3 3l-3 3"></path>
+                </svg>
+                <div class="text-2xl font-extrabold tracking-widest uppercase italic drop-shadow-[0_0_12px_rgba(56,189,248,0.4)]">
+                    <span class="text-white">VRIS</span><span class="text-sky-400">AIRCO</span>
+                </div>
             </div>
-            <a href="#order" class="bg-sky-500 hover:bg-sky-400 text-white px-5 py-2 rounded-full font-semibold transition-all text-sm shadow-[0_0_15px_rgba(14,165,233,0.5)]">
-                Pre-Order
-            </a>
+
+            <div class="flex items-center gap-3 md:gap-5">
+                <select id="langSwitcher" onchange="changeLanguage(this.value)" class="bg-slate-800 text-slate-300 text-xs md:text-sm rounded-lg px-2 py-1.5 border border-slate-700 focus:outline-none focus:border-sky-400 cursor-pointer transition-colors">
+                    <option value="nl">NL</option>
+                    <option value="fr">FR</option>
+                    <option value="en">EN</option>
+                </select>
+
+                <a href="#order" data-i18n="nav-btn" class="bg-sky-500 hover:bg-sky-400 text-white px-4 md:px-5 py-2 rounded-full font-semibold transition-all text-sm shadow-[0_0_15px_rgba(14,165,233,0.5)]">
+                    Reserveer
+                </a>
+            </div>
         </div>
     </nav>
 
-    <main class="flex-grow pt-28 pb-12 px-6 flex flex-col items-center text-center max-w-4xl mx-auto">
+    <main class="flex-grow pt-32 pb-12 px-6 flex flex-col items-center text-center max-w-4xl mx-auto">
         
-        <div class="inline-block bg-sky-900/50 border border-sky-400/30 text-sky-300 px-4 py-1 rounded-full text-xs font-bold tracking-wider mb-6 uppercase">
-            Benelux Launch: Spring 2026
+        <div class="animate-fade-in-up inline-block bg-sky-900/50 border border-sky-400/30 text-sky-300 px-4 py-1 rounded-full text-xs font-bold tracking-wider mb-6 uppercase">
+            <span data-i18n="launch">Benelux Lancering: Lente 2026</span>
         </div>
 
-        <h1 class="text-5xl md:text-7xl font-extrabold leading-tight tracking-tight mb-6">
-            Ice Cold Airco.<br>
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-blue-600">In 10 Minutes.</span>
+        <h1 class="animate-fade-in-up delay-100 text-5xl md:text-7xl font-extrabold leading-tight tracking-tight mb-6">
+            <span data-i18n="title-1">IJskoude Airco.</span><br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-blue-600" data-i18n="title-2">In 10 Minuten.</span>
         </h1>
         
-        <p class="text-lg md:text-xl text-slate-400 mb-10 max-w-2xl">
-            The professional-grade DIY refill kit. Complete with replacement gas and a precision pressure gauge. Restore your car's AC safely at home.
+        <p class="animate-fade-in-up delay-200 text-lg md:text-xl text-slate-400 mb-10 max-w-2xl" data-i18n="subtitle">
+            De professionele doe-het-zelf vulset. Compleet met vervangend gas en een precisiemanometer. Herstel de airco van je auto veilig thuis.
         </p>
 
-        <div class="w-full max-w-3xl mx-auto mb-12">
-            <h3 class="text-xl font-semibold mb-4 text-slate-300">See how easy it is to install:</h3>
-            <div class="relative w-full aspect-video bg-slate-800 rounded-2xl overflow-hidden shadow-2xl border border-slate-700">
-                
+        <div class="animate-fade-in-up delay-300 w-full max-w-3xl mx-auto mb-12">
+            <h3 class="text-xl font-semibold mb-4 text-slate-300" data-i18n="video-title">Bekijk hoe eenvoudig de installatie is:</h3>
+            <div class="relative w-full aspect-video bg-slate-800 rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(0,0,0,0.5)] border border-slate-700">
                 <iframe class="absolute top-0 left-0 w-full h-full" 
                         src="https://www.youtube.com/embed/L8BCGTkCexs?rel=0" 
                         title="AC Doctor Installation Guide" 
@@ -49,43 +80,112 @@
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                         allowfullscreen>
                 </iframe>
-                
             </div>
         </div>
 
-        <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 md:p-8 w-full mb-12 shadow-2xl relative overflow-hidden">
-            <div class="absolute top-0 right-0 w-32 h-32 bg-sky-500/10 rounded-full blur-3xl"></div>
+        <div class="animate-fade-in-up delay-400 bg-slate-800/50 border border-slate-700 rounded-2xl p-6 md:p-8 w-full mb-12 shadow-2xl relative overflow-hidden group hover:border-sky-500/30 transition-colors duration-500">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-sky-500/10 rounded-full blur-3xl group-hover:bg-sky-500/20 transition-all duration-500"></div>
             
-            <h3 class="text-2xl font-bold mb-6 text-white">The Complete Refill System</h3>
+            <h3 class="text-2xl font-bold mb-6 text-white" data-i18n="box-title">Het Complete Vulsysteem</h3>
             <ul class="text-left space-y-4 text-slate-300 mb-8 max-w-md mx-auto">
-                <li class="flex items-center">
-                    <svg class="w-6 h-6 text-sky-400 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                    <span><strong>Direct Replacement:</strong> Safe for R134a & R1234yf systems.</span>
+                <li class="flex items-start">
+                    <svg class="w-6 h-6 text-sky-400 mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <span><strong data-i18n="feat-1-bold">Directe Vervanging: </strong><span data-i18n="feat-1">Veilig voor R134a & R1234yf systemen.</span></span>
                 </li>
-                <li class="flex items-center">
-                    <svg class="w-6 h-6 text-sky-400 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                    <span><strong>Precision Gauge:</strong> Reusable hose with color-coded manometer.</span>
+                <li class="flex items-start">
+                    <svg class="w-6 h-6 text-sky-400 mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <span><strong data-i18n="feat-2-bold">Precisie Meter: </strong><span data-i18n="feat-2">Herbruikbare slang met kleurgecodeerde manometer.</span></span>
                 </li>
-                <li class="flex items-center">
-                    <svg class="w-6 h-6 text-sky-400 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                    <span><strong>100% Safe:</strong> Eco-friendly hydrocarbon formula.</span>
+                <li class="flex items-start">
+                    <svg class="w-6 h-6 text-sky-400 mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <span><strong data-i18n="feat-3-bold">100% Veilig: </strong><span data-i18n="feat-3">Milieuvriendelijke koolwaterstof formule.</span></span>
                 </li>
             </ul>
 
             <div id="order" class="mt-4">
-                <button class="w-full md:w-auto bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white font-bold py-4 px-10 rounded-xl text-lg transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(14,165,233,0.4)]">
-                    Reserve Your Kit Today
+                <button class="w-full md:w-auto bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white font-bold py-4 px-10 rounded-xl text-lg transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(14,165,233,0.4)]" data-i18n="cta-btn">
+                    Reserveer Jouw Kit Vandaag
                 </button>
-                <p class="text-xs text-slate-500 mt-3">First batch arriving soon. No payment required to reserve.</p>
+                <p class="text-xs text-slate-500 mt-3" data-i18n="cta-sub">Eerste batch arriveert binnenkort. Geen betaling vereist om te reserveren.</p>
             </div>
         </div>
 
     </main>
 
-    <footer class="bg-slate-950 py-8 border-t border-slate-800 text-center text-slate-500 text-sm mt-auto">
+    <footer class="animate-fade-in-up delay-500 bg-slate-950 py-8 border-t border-slate-800 text-center text-slate-500 text-sm mt-auto">
         <p>&copy; 2026 VrisAirco Benelux. All rights reserved.</p>
-        <p class="mt-2 text-xs">Engineered for the European Market.</p>
+        <p class="mt-2 text-xs" data-i18n="footer-sub">Ontworpen voor de Europese Markt.</p>
     </footer>
 
+    <script>
+        const translations = {
+            nl: {
+                "nav-btn": "Reserveer",
+                "launch": "Benelux Lancering: Lente 2026",
+                "title-1": "IJskoude Airco.",
+                "title-2": "In 10 Minuten.",
+                "subtitle": "De professionele doe-het-zelf vulset. Compleet met vervangend gas en een precisiemanometer. Herstel de airco van je auto veilig thuis.",
+                "video-title": "Bekijk hoe eenvoudig de installatie is:",
+                "box-title": "Het Complete Vulsysteem",
+                "feat-1-bold": "Directe Vervanging: ",
+                "feat-1": "Veilig voor R134a & R1234yf systemen.",
+                "feat-2-bold": "Precisie Meter: ",
+                "feat-2": "Herbruikbare slang met kleurgecodeerde manometer.",
+                "feat-3-bold": "100% Veilig: ",
+                "feat-3": "Milieuvriendelijke koolwaterstof formule.",
+                "cta-btn": "Reserveer Jouw Kit Vandaag",
+                "cta-sub": "Eerste batch arriveert binnenkort. Geen betaling vereist om te reserveren.",
+                "footer-sub": "Ontworpen voor de Europese Markt."
+            },
+            fr: {
+                "nav-btn": "Précommander",
+                "launch": "Lancement Benelux : Printemps 2026",
+                "title-1": "Climatisation Glaciale.",
+                "title-2": "En 10 Minutes.",
+                "subtitle": "Le kit de recharge professionnel à faire soi-même. Complet avec gaz de remplacement et manomètre de précision. Restaurez la climatisation de votre voiture en toute sécurité à domicile.",
+                "video-title": "Découvrez la simplicité d'installation :",
+                "box-title": "Le Système de Recharge Complet",
+                "feat-1-bold": "Remplacement Direct : ",
+                "feat-1": "Sûr pour les systèmes R134a et R1234yf.",
+                "feat-2-bold": "Manomètre de Précision : ",
+                "feat-2": "Tuyau réutilisable avec manomètre à code couleur.",
+                "feat-3-bold": "100% Sûr : ",
+                "feat-3": "Formule d'hydrocarbures écologique.",
+                "cta-btn": "Réservez Votre Kit Aujourd'hui",
+                "cta-sub": "Le premier lot arrive bientôt. Aucun paiement requis pour réserver.",
+                "footer-sub": "Conçu pour le marché européen."
+            },
+            en: {
+                "nav-btn": "Pre-Order",
+                "launch": "Benelux Launch: Spring 2026",
+                "title-1": "Ice Cold Airco.",
+                "title-2": "In 10 Minutes.",
+                "subtitle": "The professional-grade DIY refill kit. Complete with replacement gas and a precision pressure gauge. Restore your car's AC safely at home.",
+                "video-title": "See how easy it is to install:",
+                "box-title": "The Complete Refill System",
+                "feat-1-bold": "Direct Replacement: ",
+                "feat-1": "Safe for R134a & R1234yf systems.",
+                "feat-2-bold": "Precision Gauge: ",
+                "feat-2": "Reusable hose with color-coded manometer.",
+                "feat-3-bold": "100% Safe: ",
+                "feat-3": "Eco-friendly hydrocarbon formula.",
+                "cta-btn": "Reserve Your Kit Today",
+                "cta-sub": "First batch arriving soon. No payment required to reserve.",
+                "footer-sub": "Engineered for the European Market."
+            }
+        };
+
+        function changeLanguage(lang) {
+            document.documentElement.lang = lang;
+            const elements = document.querySelectorAll('[data-i18n]');
+            
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if(translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+        }
+    </script>
 </body>
 </html>
