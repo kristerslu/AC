@@ -8,16 +8,14 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
         
-        /* THE ELASTIC SCROLL FIX */
-        html {
-            background-color: #0f172a; /* Matches the theme to hide gaps */
-            overscroll-behavior: none; /* Stops the hard bounce */
-        }
-        
-        body { 
+        /* THE DEFINITIVE SAFARI ELASTIC SCROLL FIX */
+        html, body { 
             font-family: 'Inter', sans-serif; 
             overscroll-behavior: none; 
-            background-color: #0f172a; 
+            -webkit-overscroll-behavior: none;
+            background-color: #0f172a; /* Locks the entire viewport background to match the theme */
+            margin: 0;
+            padding: 0;
         }
 
         .reveal {
@@ -34,7 +32,6 @@
         .delay-100 { transition-delay: 100ms; }
         .delay-200 { transition-delay: 200ms; }
 
-        /* Modal Fade-in Animation */
         @keyframes fadeIn {
             from { opacity: 0; transform: scale(0.95); }
             to { opacity: 1; transform: scale(1); }
@@ -52,9 +49,9 @@
 </head>
 <body class="text-slate-100 flex flex-col min-h-screen">
 
-    <nav class="w-full bg-slate-900/95 backdrop-blur-lg sticky top-0 z-[100] border-b border-slate-800">
+    <nav class="w-full bg-slate-900/95 backdrop-blur-lg fixed top-0 left-0 z-[9999] border-b border-slate-800" style="transform: translateZ(0); -webkit-transform: translateZ(0);">
         <div class="max-w-5xl mx-auto px-5 py-4 flex justify-between items-center">
-            <div class="flex items-center gap-2 cursor-pointer">
+            <div class="flex items-center gap-2 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
                 <svg class="w-6 h-6 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v18m0-18l-3 3m3-3l3 3m-3 15l-3-3m3 3l3-3M6.545 6.545l12.728 12.728m0-12.728L6.545 19.273M4.455 12H19.5m-15.045 0l3-3m-3 3l3 3m12.045-3l-3-3m3 3l-3 3"></path>
                 </svg>
@@ -82,7 +79,7 @@
         </div>
     </nav>
 
-    <main class="flex-grow pt-16 pb-12 px-5 flex flex-col items-center text-center max-w-4xl mx-auto">
+    <main class="flex-grow pt-32 pb-12 px-5 flex flex-col items-center text-center max-w-4xl mx-auto">
         
         <div class="reveal inline-block bg-slate-800 border border-slate-700 text-slate-300 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide mb-8 uppercase">
             <span data-i18n="launch">Benelux Lancering: Lente 2026</span>
@@ -144,12 +141,12 @@
 
     </main>
 
-    <footer class="reveal bg-slate-950 py-8 border-t border-slate-800 text-center text-slate-500 text-sm mt-auto relative z-10">
+    <footer class="reveal bg-slate-900 py-8 border-t border-slate-800 text-center text-slate-500 text-sm mt-auto relative z-10">
         <p>&copy; 2026 VrisAirco Benelux. All rights reserved.</p>
         <p class="mt-2 text-xs" data-i18n="footer-sub">Ontworpen voor de Europese Markt.</p>
     </footer>
 
-    <div id="orderModal" class="fixed inset-0 z-[200] hidden items-center justify-center p-4">
+    <div id="orderModal" class="fixed inset-0 z-[10000] hidden items-center justify-center p-4">
         <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" onclick="closeModal()"></div>
         
         <div class="bg-slate-800 border border-slate-700 p-6 md:p-8 rounded-2xl w-full max-w-md relative z-10 shadow-2xl animate-modal text-left">
@@ -194,7 +191,6 @@
     </div>
 
     <script>
-        // Scroll Animation Observer
         document.addEventListener('DOMContentLoaded', () => {
             const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
             const observer = new IntersectionObserver((entries) => {
@@ -212,14 +208,12 @@
             });
         });
 
-        // Modal Logic
         function openModal(kitType = 'R134a') {
             const modal = document.getElementById('orderModal');
             modal.classList.remove('hidden');
             modal.classList.add('flex');
-            document.body.style.overflow = 'hidden'; // Prevent scrolling background
+            document.body.style.overflow = 'hidden'; 
             
-            // Auto-select the correct kit dropdown based on which button they clicked
             const select = document.getElementById('kitSelect');
             if (kitType === 'R134a' || kitType === 'R1234yf') {
                 select.value = kitType;
@@ -230,13 +224,11 @@
             const modal = document.getElementById('orderModal');
             modal.classList.add('hidden');
             modal.classList.remove('flex');
-            document.body.style.overflow = 'auto'; // Restore scrolling
+            document.body.style.overflow = 'auto'; 
         }
 
         function submitOrder(e) {
-            e.preventDefault(); // Prevents page from refreshing
-            
-            // Get current language to show the right alert message
+            e.preventDefault(); 
             const lang = document.documentElement.lang;
             const msgs = {
                 nl: "Bedankt voor je reservering! We nemen snel contact met je op.",
@@ -246,10 +238,9 @@
             
             alert(msgs[lang]);
             closeModal();
-            e.target.reset(); // Clear the form
+            e.target.reset(); 
         }
 
-        // Multilingual Engine
         const translations = {
             nl: {
                 "nav-btn": "Reserveer",
@@ -268,7 +259,6 @@
                 "btn-reserve": "Reserveer Nu",
                 "cta-sub": "Geen betaling vereist. Eerste batch arriveert binnenkort.",
                 "footer-sub": "Ontworpen voor de Europese Markt.",
-                // Modal Translations
                 "modal-title": "Pre-Order Reservering",
                 "modal-name": "Volledige Naam",
                 "modal-email": "E-mailadres",
@@ -294,7 +284,6 @@
                 "btn-reserve": "Réservez Maintenant",
                 "cta-sub": "Aucun paiement requis. Le premier lot arrive bientôt.",
                 "footer-sub": "Conçu pour le marché européen.",
-                // Modal Translations
                 "modal-title": "Réservation de Précommande",
                 "modal-name": "Nom Complet",
                 "modal-email": "Adresse E-mail",
@@ -320,7 +309,6 @@
                 "btn-reserve": "Reserve Now",
                 "cta-sub": "No payment required. First batch arriving soon.",
                 "footer-sub": "Engineered for the European Market.",
-                // Modal Translations
                 "modal-title": "Pre-Order Reservation",
                 "modal-name": "Full Name",
                 "modal-email": "Email Address",
@@ -342,7 +330,6 @@
                 }
             });
             
-            // Ensure dropdown in modal stays translated correctly if they open it
             const select = document.getElementById('kitSelect');
             if (lang === 'nl') {
                 select.options[0].text = "R134a Kit (1994 - 2016)";
