@@ -23,7 +23,7 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            z-index: 10; /* Positive index forces it to the front */
+            z-index: 10;
         }
         .layer-video video {
             width: 100%;
@@ -32,21 +32,21 @@
             pointer-events: none;
         }
 
-        /* LAYER 20: The Dark Tint */
+        /* LAYER 20: The Dark Tint - OPACITY LOWERED TO 40% (0.4) */
         .layer-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: rgba(15, 23, 42, 0.7); 
-            z-index: 20; /* Stacks directly on top of video */
+            background: rgba(15, 23, 42, 0.4); 
+            z-index: 20; 
         }
 
         /* LAYER 30: The Content */
         .layer-content {
             position: relative;
-            z-index: 30; /* Stacks on top of everything */
+            z-index: 30; 
             display: flex;
             flex-direction: column;
             min-height: 100vh;
@@ -57,7 +57,7 @@
 
     <div class="layer-video">
         <video autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1478700485868-972b69dc3fc4?q=80&w=1000&auto=format&fit=crop">
-            <source src="https://media.w3.org/2010/05/sintel/trailer.mp4" type="video/mp4">
+            <source src="YOUR_VIDEO_NAME.mp4" type="video/mp4">
         </video>
     </div>
 
