@@ -76,7 +76,7 @@
                     </div>
                 </div>
 
-                <button onclick="openModal()" data-i18n="nav-btn" class="hidden sm:inline-block bg-white hover:bg-slate-200 text-slate-900 px-5 py-2 rounded-lg font-semibold transition-colors text-sm shadow-md">
+                <button onclick="scrollToOrder()" data-i18n="nav-btn" class="hidden sm:inline-block bg-white hover:bg-slate-200 text-slate-900 px-5 py-2 rounded-lg font-semibold transition-colors text-sm shadow-md">
                     Reserveer
                 </button>
             </div>
@@ -160,7 +160,8 @@
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
             
-            <h2 class="text-2xl font-bold text-white mb-6" data-i18n="modal-title">Pre-Order Reservering</h2>
+            <h2 class="text-2xl font-bold text-white mb-1" data-i18n="modal-title">Pre-Order Reservering</h2>
+            <p id="modalSubtitle" data-kit="" class="text-sky-400 text-sm font-bold tracking-wider mb-6 uppercase"></p>
             
             <form onsubmit="submitOrder(event)" class="space-y-4">
                 <div>
@@ -173,19 +174,11 @@
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-slate-300 mb-1" data-i18n="modal-car">Auto (Merk & Model)</label>
-                    <input type="text" placeholder="Bijv. Volkswagen Golf 2018" required class="w-full bg-slate-900 border border-slate-600 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-sky-500 transition-colors placeholder-slate-600 shadow-inner">
+                    <input type="text" placeholder="Bijv. Volkswagen Golf" required class="w-full bg-slate-900 border border-slate-600 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-sky-500 transition-colors placeholder-slate-600 shadow-inner">
                 </div>
                 <div>
-                    <label class="block text-sm font-medium text-slate-300 mb-1" data-i18n="modal-kit">Kies Jouw Systeem</label>
-                    <div class="relative">
-                        <select id="kitSelect" class="w-full bg-slate-900 border border-slate-600 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-sky-500 appearance-none transition-colors shadow-inner">
-                            <option value="R134a">R134a Kit (1994 - 2016)</option>
-                            <option value="R1234yf">R1234yf Kit (2017 of nieuwer)</option>
-                        </select>
-                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-400">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                        </div>
-                    </div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1" data-i18n="modal-year">Bouwjaar Auto</label>
+                    <input type="number" min="1950" max="2026" placeholder="Bijv. 2018" required class="w-full bg-slate-900 border border-slate-600 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-sky-500 transition-colors placeholder-slate-600 shadow-inner">
                 </div>
                 
                 <button type="submit" class="w-full bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white font-bold py-3.5 rounded-lg mt-6 transition-all transform hover:scale-[1.02] shadow-lg" data-i18n="modal-btn">
@@ -201,14 +194,10 @@
             document.getElementById('scroll-wrapper').scrollTo(0, 0);
         };
 
+        // Scroll animation observer
         document.addEventListener('DOMContentLoaded', () => {
             const scrollWrapper = document.getElementById('scroll-wrapper');
-            
-            const observerOptions = { 
-                root: scrollWrapper, 
-                rootMargin: '0px', 
-                threshold: 0.1 
-            };
+            const observerOptions = { root: scrollWrapper, rootMargin: '0px', threshold: 0.1 };
             
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -225,24 +214,24 @@
             });
         });
 
-        // UPDATED MODAL LOGIC FOR LOCKING DROPDOWN
-        function openModal(kitType = null) {
+        // Top Nav Button Scroll Logic
+        function scrollToOrder() {
+            const wrapper = document.getElementById('scroll-wrapper');
+            const target = document.getElementById('order');
+            // Scrolls down to the order section, offsetting for the sticky nav height
+            wrapper.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
+        }
+
+        // Updated Modal Logic
+        function openModal(kitType) {
             const modal = document.getElementById('orderModal');
             modal.classList.remove('hidden');
             modal.classList.add('flex');
             
-            const select = document.getElementById('kitSelect');
-            
-            if (kitType === 'R134a' || kitType === 'R1234yf') {
-                // If they clicked a specific product, lock it in
-                select.value = kitType;
-                select.disabled = true;
-                select.classList.add('opacity-50', 'cursor-not-allowed');
-            } else {
-                // If they clicked the top nav button, let them choose
-                select.disabled = false;
-                select.classList.remove('opacity-50', 'cursor-not-allowed');
-            }
+            // Set Subtitle Text
+            const subtitleEl = document.getElementById('modalSubtitle');
+            subtitleEl.dataset.kit = kitType; // Save it to the element for live translation
+            updateSubtitleText();
         }
 
         function closeModal() {
@@ -263,6 +252,26 @@
             alert(msgs[lang]);
             closeModal();
             e.target.reset(); 
+        }
+
+        function updateSubtitleText() {
+            const subtitleEl = document.getElementById('modalSubtitle');
+            const kitType = subtitleEl.dataset.kit;
+            const lang = document.documentElement.lang;
+            
+            if (!kitType) return;
+
+            if (kitType === 'R134a') {
+                if(lang === 'nl') subtitleEl.innerText = "Geselecteerd: R134a Kit";
+                else if(lang === 'fr') subtitleEl.innerText = "Sélectionné : Kit R134a";
+                else subtitleEl.innerText = "Selected: R134a Kit";
+                subtitleEl.className = "text-sky-400 text-sm font-bold tracking-wider mb-6 uppercase"; // Blue
+            } else {
+                if(lang === 'nl') subtitleEl.innerText = "Geselecteerd: R1234yf Kit";
+                else if(lang === 'fr') subtitleEl.innerText = "Sélectionné : Kit R1234yf";
+                else subtitleEl.innerText = "Selected: R1234yf Kit";
+                subtitleEl.className = "text-green-400 text-sm font-bold tracking-wider mb-6 uppercase"; // Green
+            }
         }
 
         const translations = {
@@ -287,7 +296,7 @@
                 "modal-name": "Volledige Naam",
                 "modal-email": "E-mailadres",
                 "modal-car": "Auto (Merk & Model)",
-                "modal-kit": "Kies Jouw Systeem",
+                "modal-year": "Bouwjaar Auto",
                 "modal-btn": "Bevestig Reservering",
                 "modal-note": "Dit is een vrijblijvende reservering. Wij nemen contact op zodra de voorraad arriveert."
             },
@@ -312,7 +321,7 @@
                 "modal-name": "Nom Complet",
                 "modal-email": "Adresse E-mail",
                 "modal-car": "Voiture (Marque et Modèle)",
-                "modal-kit": "Choisissez Votre Système",
+                "modal-year": "Année de fabrication",
                 "modal-btn": "Confirmer la Réservation",
                 "modal-note": "Ceci est une réservation sans engagement. Nous vous contacterons dès l'arrivée du stock."
             },
@@ -337,7 +346,7 @@
                 "modal-name": "Full Name",
                 "modal-email": "Email Address",
                 "modal-car": "Car (Make & Model)",
-                "modal-kit": "Choose Your System",
+                "modal-year": "Car Production Year",
                 "modal-btn": "Confirm Reservation",
                 "modal-note": "This is a no-obligation reservation. We will contact you as soon as stock arrives."
             }
@@ -353,18 +362,7 @@
                     el.innerHTML = translations[lang][key];
                 }
             });
-            
-            const select = document.getElementById('kitSelect');
-            if (lang === 'nl') {
-                select.options[0].text = "R134a Kit (1994 - 2016)";
-                select.options[1].text = "R1234yf Kit (2017 of nieuwer)";
-            } else if (lang === 'fr') {
-                select.options[0].text = "Kit R134a (1994 - 2016)";
-                select.options[1].text = "Kit R1234yf (2017 ou plus récent)";
-            } else {
-                select.options[0].text = "R134a Kit (1994 - 2016)";
-                select.options[1].text = "R1234yf Kit (2017 or newer)";
-            }
+            updateSubtitleText();
         }
     </script>
 </body>
