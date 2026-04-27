@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VrisAircoo | Premium Car AC Refill Kits in Benelux</title>
+    <title>VrisAirco | Premium Car AC Refill Kits in Benelux</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
@@ -11,50 +11,42 @@
         body, html { 
             margin: 0; 
             padding: 0; 
-            height: 100%; 
+            min-height: 100vh; 
             font-family: 'Inter', sans-serif; 
-            background-color: #0f172a; /* Fallback dark color */
+            background-color: #000; 
         }
 
-        /* The Bulletproof iOS Video Wrapper */
-        .video-container {
+        /* LAYER 10: The Video */
+        .layer-video {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            overflow: hidden;
-            z-index: -2;
+            z-index: 10; /* Positive index forces it to the front */
         }
-
-        .video-container video {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            transform: translate(-50%, -50%);
+        .layer-video video {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
             pointer-events: none;
         }
 
-        /* The Dark Tint */
-        .video-overlay {
+        /* LAYER 20: The Dark Tint */
+        .layer-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: rgba(15, 23, 42, 0.7); /* Slate 900 with 70% opacity */
-            z-index: -1;
+            background: rgba(15, 23, 42, 0.7); 
+            z-index: 20; /* Stacks directly on top of video */
         }
 
-        /* Forces content on top */
-        .content-layer {
+        /* LAYER 30: The Content */
+        .layer-content {
             position: relative;
-            z-index: 10;
+            z-index: 30; /* Stacks on top of everything */
             display: flex;
             flex-direction: column;
             min-height: 100vh;
@@ -63,16 +55,16 @@
 </head>
 <body class="text-slate-100">
 
-    <div class="video-container">
-        <video autoplay loop muted playsinline>
+    <div class="layer-video">
+        <video autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1478700485868-972b69dc3fc4?q=80&w=1000&auto=format&fit=crop">
             <source src="https://media.w3.org/2010/05/sintel/trailer.mp4" type="video/mp4">
         </video>
     </div>
 
-    <div class="video-overlay"></div>
+    <div class="layer-overlay"></div>
 
-    <div class="content-layer">
-        <nav class="w-full bg-slate-950/40 backdrop-blur-md border-b border-white/10 fixed top-0 w-full z-50">
+    <div class="layer-content">
+        <nav class="w-full bg-slate-950/40 backdrop-blur-md border-b border-white/10 fixed top-0 z-50">
             <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
                 <div class="text-2xl font-extrabold tracking-widest uppercase italic cursor-pointer drop-shadow-lg">
                     VRIS<span class="text-sky-400">AIRCO</span>
@@ -90,7 +82,7 @@
             </div>
 
             <h1 class="text-5xl md:text-7xl font-extrabold leading-tight tracking-tight mb-6 drop-shadow-2xl">
-                Ice Colddd Airco.<br>
+                Ice Cold Airco.<br>
                 <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-blue-300 drop-shadow-lg">In 10 Minutes.</span>
             </h1>
             
@@ -122,13 +114,11 @@
                     <p class="text-xs text-slate-400 mt-3">First batch arriving soon. No payment required to reserve.</p>
                 </div>
             </div>
-
         </main>
 
         <footer class="bg-slate-950/80 backdrop-blur-md py-6 border-t border-white/10 text-center text-slate-500 text-sm mt-auto">
             <p>&copy; 2026 VrisAirco Benelux. All rights reserved.</p>
         </footer>
     </div>
-
 </body>
 </html>
