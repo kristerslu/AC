@@ -9,15 +9,29 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
         body { font-family: 'Inter', sans-serif; }
 
-        /* Subtle, premium fade-in (no aggressive bouncing) */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Scroll Reveal Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .animate-fade {
-            animation: fadeIn 0.6s ease-out forwards;
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
+
+        /* Staggered delays for the hero section */
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
     </style>
+    <script>
+        // Force page to scroll to top on refresh
+        if (history.scrollRestoration) {
+            history.scrollRestoration = 'manual';
+        }
+        window.scrollTo(0, 0);
+    </script>
 </head>
 <body class="bg-slate-900 text-slate-100 flex flex-col min-h-screen">
 
@@ -53,22 +67,22 @@
         </div>
     </nav>
 
-    <main class="flex-grow pt-32 pb-12 px-5 flex flex-col items-center text-center max-w-4xl mx-auto animate-fade">
+    <main class="flex-grow pt-32 pb-12 px-5 flex flex-col items-center text-center max-w-4xl mx-auto">
         
-        <div class="inline-block bg-slate-800 border border-slate-700 text-slate-300 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide mb-8 uppercase">
+        <div class="reveal inline-block bg-slate-800 border border-slate-700 text-slate-300 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide mb-8 uppercase">
             <span data-i18n="launch">Benelux Lancering: Lente 2026</span>
         </div>
 
-        <h1 class="text-4xl md:text-6xl font-bold leading-tight tracking-tight mb-6">
+        <h1 class="reveal delay-100 text-4xl md:text-6xl font-bold leading-tight tracking-tight mb-6">
             <span data-i18n="title-1">IJskoude Airco.</span><br>
             <span class="text-sky-400" data-i18n="title-2">In 10 Minuten.</span>
         </h1>
         
-        <p class="text-base md:text-lg text-slate-400 mb-12 max-w-2xl font-normal leading-relaxed" data-i18n="subtitle">
+        <p class="reveal delay-200 text-base md:text-lg text-slate-400 mb-12 max-w-2xl font-normal leading-relaxed" data-i18n="subtitle">
             De professionele doe-het-zelf vulset. Compleet met vervangend gas en een precisiemanometer. Herstel de airco van je auto veilig thuis.
         </p>
 
-        <div class="w-full max-w-3xl mx-auto mb-16">
+        <div class="reveal w-full max-w-3xl mx-auto mb-16">
             <div class="relative w-full aspect-video bg-slate-950 rounded-xl overflow-hidden border border-slate-800">
                 <iframe class="absolute top-0 left-0 w-full h-full" 
                         src="https://www.youtube.com/embed/L8BCGTkCexs?rel=0" 
@@ -80,7 +94,7 @@
             </div>
         </div>
 
-        <div class="bg-slate-800/40 border border-slate-700 rounded-xl p-8 md:p-10 w-full max-w-3xl mb-12 text-left flex flex-col md:flex-row gap-8 items-center md:items-start">
+        <div class="reveal bg-slate-800/40 border border-slate-700 rounded-xl p-8 md:p-10 w-full max-w-3xl mb-12 text-left flex flex-col md:flex-row gap-8 items-center md:items-start">
             
             <div class="flex-1">
                 <h3 class="text-2xl font-semibold mb-6 text-white" data-i18n="box-title">Het Complete Vulsysteem</h3>
@@ -117,6 +131,31 @@
     </footer>
 
     <script>
+        // Scroll Animation Observer
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15 // Triggers when 15% of the element is visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        // Optional: Unobserve if you only want it to animate once
+                        observer.unobserve(entry.target); 
+                    }
+                });
+            }, observerOptions);
+
+            // Select all elements with the 'reveal' class and observe them
+            document.querySelectorAll('.reveal').forEach((el) => {
+                observer.observe(el);
+            });
+        });
+
+        // Multilingual Engine
         const translations = {
             nl: {
                 "nav-btn": "Reserveer",
@@ -132,7 +171,7 @@
                 "feat-3-bold": "100% Veilig: ",
                 "feat-3": "Milieuvriendelijke formule.",
                 "cta-btn": "Reserveer Nu",
-                "cta-sub": "Geen betaling vereist. Eerste batch arriveert binnenkort.",
+                "cta-sub": "Geen betaling vereist.<br>Eerste batch arriveert binnenkort.",
                 "footer-sub": "Ontworpen voor de Europese Markt."
             },
             fr: {
@@ -149,7 +188,7 @@
                 "feat-3-bold": "100% Sûr : ",
                 "feat-3": "Formule écologique.",
                 "cta-btn": "Réservez Maintenant",
-                "cta-sub": "Aucun paiement requis. Le premier lot arrive bientôt.",
+                "cta-sub": "Aucun paiement requis.<br>Le premier lot arrive bientôt.",
                 "footer-sub": "Conçu pour le marché européen."
             },
             en: {
@@ -166,7 +205,7 @@
                 "feat-3-bold": "100% Safe: ",
                 "feat-3": "Eco-friendly formula.",
                 "cta-btn": "Reserve Now",
-                "cta-sub": "No payment required. First batch arriving soon.",
+                "cta-sub": "No payment required.<br>First batch arriving soon.",
                 "footer-sub": "Engineered for the European Market."
             }
         };
