@@ -6,73 +6,70 @@
     <title>VrisAirco | Premium Auto Airco Vulsets</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
         body { font-family: 'Inter', sans-serif; }
 
-        /* Custom Animations */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(25px); }
+        /* Subtle, premium fade-in (no aggressive bouncing) */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
-        .animate-fade-in-up {
-            opacity: 0;
-            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        .animate-fade {
+            animation: fadeIn 0.6s ease-out forwards;
         }
-
-        .delay-100 { animation-delay: 100ms; }
-        .delay-200 { animation-delay: 200ms; }
-        .delay-300 { animation-delay: 300ms; }
-        .delay-400 { animation-delay: 400ms; }
-        .delay-500 { animation-delay: 500ms; }
     </style>
 </head>
-<body class="bg-slate-900 text-slate-100 flex flex-col min-h-screen overflow-x-hidden">
+<body class="bg-slate-900 text-slate-100 flex flex-col min-h-screen">
 
-    <nav class="w-full bg-slate-950/80 backdrop-blur-md fixed top-0 z-50 border-b border-slate-800">
-        <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
+    <nav class="w-full bg-slate-900/95 backdrop-blur-md fixed top-0 z-50 border-b border-slate-800">
+        <div class="max-w-5xl mx-auto px-5 py-4 flex justify-between items-center">
             
-            <div class="flex items-center gap-2 cursor-pointer group">
-                <svg class="w-7 h-7 text-sky-400 group-hover:rotate-180 transition-transform duration-700 ease-in-out" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="flex items-center gap-2 cursor-pointer">
+                <svg class="w-6 h-6 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v18m0-18l-3 3m3-3l3 3m-3 15l-3-3m3 3l3-3M6.545 6.545l12.728 12.728m0-12.728L6.545 19.273M4.455 12H19.5m-15.045 0l3-3m-3 3l3 3m12.045-3l-3-3m3 3l-3 3"></path>
                 </svg>
-                <div class="text-2xl font-extrabold tracking-widest uppercase italic drop-shadow-[0_0_12px_rgba(56,189,248,0.4)]">
-                    <span class="text-white">VRIS</span><span class="text-sky-400">AIRCO</span>
+                <div class="text-xl md:text-2xl font-bold tracking-wide uppercase">
+                    VRIS<span class="text-sky-500">AIRCO</span>
                 </div>
             </div>
 
-            <div class="flex items-center gap-3 md:gap-5">
-                <select id="langSwitcher" onchange="changeLanguage(this.value)" class="bg-slate-800 text-slate-300 text-xs md:text-sm rounded-lg px-2 py-1.5 border border-slate-700 focus:outline-none focus:border-sky-400 cursor-pointer transition-colors">
-                    <option value="nl">NL</option>
-                    <option value="fr">FR</option>
-                    <option value="en">EN</option>
-                </select>
+            <div class="flex items-center gap-3 md:gap-6">
+                
+                <div class="relative">
+                    <select id="langSwitcher" onchange="changeLanguage(this.value)" class="appearance-none bg-slate-800 text-slate-200 text-sm md:text-base font-medium py-2 pl-3 pr-8 rounded-lg border border-slate-700 focus:outline-none focus:border-sky-500 cursor-pointer transition-colors">
+                        <option value="nl">NL</option>
+                        <option value="fr">FR</option>
+                        <option value="en">EN</option>
+                    </select>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-slate-400">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                </div>
 
-                <a href="#order" data-i18n="nav-btn" class="bg-sky-500 hover:bg-sky-400 text-white px-4 md:px-5 py-2 rounded-full font-semibold transition-all text-sm shadow-[0_0_15px_rgba(14,165,233,0.5)]">
+                <a href="#order" data-i18n="nav-btn" class="hidden sm:inline-block bg-white hover:bg-slate-200 text-slate-900 px-5 py-2 rounded-lg font-semibold transition-colors text-sm">
                     Reserveer
                 </a>
             </div>
         </div>
     </nav>
 
-    <main class="flex-grow pt-32 pb-12 px-6 flex flex-col items-center text-center max-w-4xl mx-auto">
+    <main class="flex-grow pt-32 pb-12 px-5 flex flex-col items-center text-center max-w-4xl mx-auto animate-fade">
         
-        <div class="animate-fade-in-up inline-block bg-sky-900/50 border border-sky-400/30 text-sky-300 px-4 py-1 rounded-full text-xs font-bold tracking-wider mb-6 uppercase">
+        <div class="inline-block bg-slate-800 border border-slate-700 text-slate-300 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide mb-8 uppercase">
             <span data-i18n="launch">Benelux Lancering: Lente 2026</span>
         </div>
 
-        <h1 class="animate-fade-in-up delay-100 text-5xl md:text-7xl font-extrabold leading-tight tracking-tight mb-6">
+        <h1 class="text-4xl md:text-6xl font-bold leading-tight tracking-tight mb-6">
             <span data-i18n="title-1">IJskoude Airco.</span><br>
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-blue-600" data-i18n="title-2">In 10 Minuten.</span>
+            <span class="text-sky-400" data-i18n="title-2">In 10 Minuten.</span>
         </h1>
         
-        <p class="animate-fade-in-up delay-200 text-lg md:text-xl text-slate-400 mb-10 max-w-2xl" data-i18n="subtitle">
+        <p class="text-base md:text-lg text-slate-400 mb-12 max-w-2xl font-normal leading-relaxed" data-i18n="subtitle">
             De professionele doe-het-zelf vulset. Compleet met vervangend gas en een precisiemanometer. Herstel de airco van je auto veilig thuis.
         </p>
 
-        <div class="animate-fade-in-up delay-300 w-full max-w-3xl mx-auto mb-12">
-            <h3 class="text-xl font-semibold mb-4 text-slate-300" data-i18n="video-title">Bekijk hoe eenvoudig de installatie is:</h3>
-            <div class="relative w-full aspect-video bg-slate-800 rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(0,0,0,0.5)] border border-slate-700">
+        <div class="w-full max-w-3xl mx-auto mb-16">
+            <div class="relative w-full aspect-video bg-slate-950 rounded-xl overflow-hidden border border-slate-800">
                 <iframe class="absolute top-0 left-0 w-full h-full" 
                         src="https://www.youtube.com/embed/L8BCGTkCexs?rel=0" 
                         title="AC Doctor Installation Guide" 
@@ -83,36 +80,38 @@
             </div>
         </div>
 
-        <div class="animate-fade-in-up delay-400 bg-slate-800/50 border border-slate-700 rounded-2xl p-6 md:p-8 w-full mb-12 shadow-2xl relative overflow-hidden group hover:border-sky-500/30 transition-colors duration-500">
-            <div class="absolute top-0 right-0 w-32 h-32 bg-sky-500/10 rounded-full blur-3xl group-hover:bg-sky-500/20 transition-all duration-500"></div>
+        <div class="bg-slate-800/40 border border-slate-700 rounded-xl p-8 md:p-10 w-full max-w-3xl mb-12 text-left flex flex-col md:flex-row gap-8 items-center md:items-start">
             
-            <h3 class="text-2xl font-bold mb-6 text-white" data-i18n="box-title">Het Complete Vulsysteem</h3>
-            <ul class="text-left space-y-4 text-slate-300 mb-8 max-w-md mx-auto">
-                <li class="flex items-start">
-                    <svg class="w-6 h-6 text-sky-400 mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                    <span><strong data-i18n="feat-1-bold">Directe Vervanging: </strong><span data-i18n="feat-1">Veilig voor R134a & R1234yf systemen.</span></span>
-                </li>
-                <li class="flex items-start">
-                    <svg class="w-6 h-6 text-sky-400 mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                    <span><strong data-i18n="feat-2-bold">Precisie Meter: </strong><span data-i18n="feat-2">Herbruikbare slang met kleurgecodeerde manometer.</span></span>
-                </li>
-                <li class="flex items-start">
-                    <svg class="w-6 h-6 text-sky-400 mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                    <span><strong data-i18n="feat-3-bold">100% Veilig: </strong><span data-i18n="feat-3">Milieuvriendelijke koolwaterstof formule.</span></span>
-                </li>
-            </ul>
-
-            <div id="order" class="mt-4">
-                <button class="w-full md:w-auto bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white font-bold py-4 px-10 rounded-xl text-lg transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(14,165,233,0.4)]" data-i18n="cta-btn">
-                    Reserveer Jouw Kit Vandaag
-                </button>
-                <p class="text-xs text-slate-500 mt-3" data-i18n="cta-sub">Eerste batch arriveert binnenkort. Geen betaling vereist om te reserveren.</p>
+            <div class="flex-1">
+                <h3 class="text-2xl font-semibold mb-6 text-white" data-i18n="box-title">Het Complete Vulsysteem</h3>
+                <ul class="space-y-4 text-slate-300">
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-sky-400 mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="text-sm md:text-base"><strong class="text-white font-medium" data-i18n="feat-1-bold">Directe Vervanging: </strong><span data-i18n="feat-1">Veilig voor R134a & R1234yf systemen.</span></span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-sky-400 mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="text-sm md:text-base"><strong class="text-white font-medium" data-i18n="feat-2-bold">Precisie Meter: </strong><span data-i18n="feat-2">Herbruikbare slang met kleurgecodeerde manometer.</span></span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-5 h-5 text-sky-400 mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <span class="text-sm md:text-base"><strong class="text-white font-medium" data-i18n="feat-3-bold">100% Veilig: </strong><span data-i18n="feat-3">Milieuvriendelijke formule.</span></span>
+                    </li>
+                </ul>
             </div>
+
+            <div id="order" class="w-full md:w-auto bg-slate-900 p-6 rounded-lg border border-slate-700 flex flex-col items-center justify-center min-w-[250px]">
+                <button class="w-full bg-sky-500 hover:bg-sky-400 text-white font-semibold py-3 px-6 rounded-lg transition-colors text-base" data-i18n="cta-btn">
+                    Reserveer Nu
+                </button>
+                <p class="text-xs text-slate-500 mt-4 text-center" data-i18n="cta-sub">Geen betaling vereist.<br>Eerste batch arriveert binnenkort.</p>
+            </div>
+
         </div>
 
     </main>
 
-    <footer class="animate-fade-in-up delay-500 bg-slate-950 py-8 border-t border-slate-800 text-center text-slate-500 text-sm mt-auto">
+    <footer class="bg-slate-950 py-8 border-t border-slate-800 text-center text-slate-500 text-sm mt-auto">
         <p>&copy; 2026 VrisAirco Benelux. All rights reserved.</p>
         <p class="mt-2 text-xs" data-i18n="footer-sub">Ontworpen voor de Europese Markt.</p>
     </footer>
@@ -125,16 +124,15 @@
                 "title-1": "IJskoude Airco.",
                 "title-2": "In 10 Minuten.",
                 "subtitle": "De professionele doe-het-zelf vulset. Compleet met vervangend gas en een precisiemanometer. Herstel de airco van je auto veilig thuis.",
-                "video-title": "Bekijk hoe eenvoudig de installatie is:",
                 "box-title": "Het Complete Vulsysteem",
                 "feat-1-bold": "Directe Vervanging: ",
                 "feat-1": "Veilig voor R134a & R1234yf systemen.",
                 "feat-2-bold": "Precisie Meter: ",
                 "feat-2": "Herbruikbare slang met kleurgecodeerde manometer.",
                 "feat-3-bold": "100% Veilig: ",
-                "feat-3": "Milieuvriendelijke koolwaterstof formule.",
-                "cta-btn": "Reserveer Jouw Kit Vandaag",
-                "cta-sub": "Eerste batch arriveert binnenkort. Geen betaling vereist om te reserveren.",
+                "feat-3": "Milieuvriendelijke formule.",
+                "cta-btn": "Reserveer Nu",
+                "cta-sub": "Geen betaling vereist. Eerste batch arriveert binnenkort.",
                 "footer-sub": "Ontworpen voor de Europese Markt."
             },
             fr: {
@@ -142,17 +140,16 @@
                 "launch": "Lancement Benelux : Printemps 2026",
                 "title-1": "Climatisation Glaciale.",
                 "title-2": "En 10 Minutes.",
-                "subtitle": "Le kit de recharge professionnel à faire soi-même. Complet avec gaz de remplacement et manomètre de précision. Restaurez la climatisation de votre voiture en toute sécurité à domicile.",
-                "video-title": "Découvrez la simplicité d'installation :",
-                "box-title": "Le Système de Recharge Complet",
+                "subtitle": "Le kit de recharge professionnel à faire soi-même. Complet avec gaz et manomètre de précision. Restaurez la climatisation de votre voiture à domicile.",
+                "box-title": "Le Système Complet",
                 "feat-1-bold": "Remplacement Direct : ",
                 "feat-1": "Sûr pour les systèmes R134a et R1234yf.",
                 "feat-2-bold": "Manomètre de Précision : ",
                 "feat-2": "Tuyau réutilisable avec manomètre à code couleur.",
                 "feat-3-bold": "100% Sûr : ",
-                "feat-3": "Formule d'hydrocarbures écologique.",
-                "cta-btn": "Réservez Votre Kit Aujourd'hui",
-                "cta-sub": "Le premier lot arrive bientôt. Aucun paiement requis pour réserver.",
+                "feat-3": "Formule écologique.",
+                "cta-btn": "Réservez Maintenant",
+                "cta-sub": "Aucun paiement requis. Le premier lot arrive bientôt.",
                 "footer-sub": "Conçu pour le marché européen."
             },
             en: {
@@ -161,16 +158,15 @@
                 "title-1": "Ice Cold Airco.",
                 "title-2": "In 10 Minutes.",
                 "subtitle": "The professional-grade DIY refill kit. Complete with replacement gas and a precision pressure gauge. Restore your car's AC safely at home.",
-                "video-title": "See how easy it is to install:",
-                "box-title": "The Complete Refill System",
+                "box-title": "The Complete System",
                 "feat-1-bold": "Direct Replacement: ",
                 "feat-1": "Safe for R134a & R1234yf systems.",
                 "feat-2-bold": "Precision Gauge: ",
                 "feat-2": "Reusable hose with color-coded manometer.",
                 "feat-3-bold": "100% Safe: ",
-                "feat-3": "Eco-friendly hydrocarbon formula.",
-                "cta-btn": "Reserve Your Kit Today",
-                "cta-sub": "First batch arriving soon. No payment required to reserve.",
+                "feat-3": "Eco-friendly formula.",
+                "cta-btn": "Reserve Now",
+                "cta-sub": "No payment required. First batch arriving soon.",
                 "footer-sub": "Engineered for the European Market."
             }
         };
@@ -182,7 +178,7 @@
             elements.forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if(translations[lang][key]) {
-                    el.textContent = translations[lang][key];
+                    el.innerHTML = translations[lang][key];
                 }
             });
         }
