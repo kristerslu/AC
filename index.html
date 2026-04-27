@@ -2,20 +2,30 @@
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>VrisAirco | Premium Auto Airco Vulsets</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
         
-        /* THE DEFINITIVE SAFARI ELASTIC SCROLL FIX */
+        /* THE NATIVE APP ARCHITECTURE FIX */
         html, body { 
             font-family: 'Inter', sans-serif; 
-            overscroll-behavior: none; 
-            -webkit-overscroll-behavior: none;
-            background-color: #0f172a; /* Locks the entire viewport background to match the theme */
+            background-color: #0f172a; /* Deep slate */
             margin: 0;
             padding: 0;
+            width: 100%;
+            height: 100%;
+            /* Disables standard browser scrolling completely */
+            overflow: hidden; 
+        }
+
+        /* The custom scrolling box */
+        #scroll-wrapper {
+            height: 100dvh; /* Uses dynamic viewport height for perfect mobile fit */
+            width: 100%;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch; /* Butter-smooth iOS momentum scrolling */
         }
 
         .reveal {
@@ -40,18 +50,13 @@
             animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
     </style>
-    <script>
-        if (history.scrollRestoration) {
-            history.scrollRestoration = 'manual';
-        }
-        window.scrollTo(0, 0);
-    </script>
 </head>
-<body class="text-slate-100 flex flex-col min-h-screen">
+<body class="text-slate-100">
 
-    <nav class="w-full bg-slate-900/95 backdrop-blur-lg fixed top-0 left-0 z-[9999] border-b border-slate-800" style="transform: translateZ(0); -webkit-transform: translateZ(0);">
+    <nav class="w-full bg-slate-900/95 backdrop-blur-lg absolute top-0 left-0 z-[100] border-b border-slate-800">
         <div class="max-w-5xl mx-auto px-5 py-4 flex justify-between items-center">
-            <div class="flex items-center gap-2 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+            
+            <div class="flex items-center gap-2 cursor-pointer" onclick="document.getElementById('scroll-wrapper').scrollTo({top: 0, behavior: 'smooth'})">
                 <svg class="w-6 h-6 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v18m0-18l-3 3m3-3l3 3m-3 15l-3-3m3 3l3-3M6.545 6.545l12.728 12.728m0-12.728L6.545 19.273M4.455 12H19.5m-15.045 0l3-3m-3 3l3 3m12.045-3l-3-3m3 3l-3 3"></path>
                 </svg>
@@ -79,74 +84,76 @@
         </div>
     </nav>
 
-    <main class="flex-grow pt-32 pb-12 px-5 flex flex-col items-center text-center max-w-4xl mx-auto">
+    <div id="scroll-wrapper">
         
-        <div class="reveal inline-block bg-slate-800 border border-slate-700 text-slate-300 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide mb-8 uppercase">
-            <span data-i18n="launch">Benelux Lancering: Lente 2026</span>
-        </div>
-
-        <h1 class="reveal delay-100 text-4xl md:text-6xl font-bold leading-tight tracking-tight mb-6">
-            <span data-i18n="title-1">IJskoude Airco.</span><br>
-            <span class="text-sky-400" data-i18n="title-2">In 10 Minuten.</span>
-        </h1>
-        
-        <p class="reveal delay-200 text-base md:text-lg text-slate-400 mb-12 max-w-2xl font-normal leading-relaxed" data-i18n="subtitle">
-            De professionele doe-het-zelf vulset. Compleet met vervangend gas en een precisiemanometer. Herstel de airco van je auto veilig thuis.
-        </p>
-
-        <div class="reveal w-full max-w-3xl mx-auto mb-16 flex flex-col items-center">
-            <div class="relative w-full aspect-video bg-slate-950 rounded-xl overflow-hidden border border-slate-800 shadow-2xl mb-4">
-                <iframe class="absolute top-0 left-0 w-full h-full" 
-                        src="https://www.youtube.com/embed/L8BCGTkCexs?rel=0" 
-                        title="AC Doctor Installation Guide" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                </iframe>
-            </div>
-            <div class="inline-flex items-center gap-2 bg-slate-800/60 border border-slate-700 px-4 py-2 rounded-full text-slate-400 text-xs md:text-sm font-medium">
-                <svg class="w-4 h-4 text-sky-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path></svg>
-                <span data-i18n="video-caption">Officiële AC Doctor™ Installatiegids</span>
-            </div>
-        </div>
-
-        <div id="order" class="reveal w-full max-w-4xl mx-auto mb-16 pt-8 border-t border-slate-800">
-            <h2 class="text-3xl font-bold text-center mb-10 text-white" data-i18n="select-title">Kies Jouw Systeem</h2>
+        <main class="flex-grow pt-32 pb-12 px-5 flex flex-col items-center text-center max-w-4xl mx-auto min-h-screen">
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-slate-800/60 border border-slate-700 rounded-2xl p-6 hover:border-sky-500/50 transition-colors text-left flex flex-col group relative overflow-hidden">
-                    <div class="absolute top-0 left-0 w-full h-1 bg-sky-500"></div>
-                    <div class="aspect-[4/3] bg-white rounded-xl mb-6 flex items-center justify-center p-4 overflow-hidden">
-                        <img src="https://acdoctor.shop/195-large_default/gas-r134a-voor-airconditioning-in-auto-s-van-1994-2016.jpg" alt="R134a Kit" class="h-full w-full object-contain group-hover:scale-105 transition-transform duration-500 mix-blend-multiply">
-                    </div>
-                    <div class="inline-block bg-sky-900/40 text-sky-400 text-xs font-bold px-3 py-1 rounded-full mb-4 self-start" data-i18n="year-134a">1994 - 2016</div>
-                    <h3 class="text-xl font-bold mb-2 text-white" data-i18n="title-134a">R134a Gas + Slang</h3>
-                    <p class="text-slate-400 text-sm mb-8 flex-grow" data-i18n="desc-134a">De standaard voor auto's gebouwd tussen 1994 en 2016. Inclusief manometer slang.</p>
-                    <button onclick="openModal('R134a')" class="w-full bg-slate-700 group-hover:bg-sky-500 text-white font-semibold py-3 rounded-lg transition-colors" data-i18n="btn-reserve">Reserveer Nu</button>
-                </div>
+            <div class="reveal inline-block bg-slate-800 border border-slate-700 text-slate-300 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide mb-8 uppercase">
+                <span data-i18n="launch">Benelux Lancering: Lente 2026</span>
+            </div>
 
-                <div class="bg-slate-800/60 border border-slate-700 rounded-2xl p-6 hover:border-green-500/50 transition-colors text-left flex flex-col group relative overflow-hidden">
-                    <div class="absolute top-0 left-0 w-full h-1 bg-green-500"></div>
-                    <div class="aspect-[4/3] bg-white rounded-xl mb-6 flex items-center justify-center p-4 overflow-hidden">
-                        <img src="https://acdoctor.shop/121-large_default/gas-1234yf-voor-airconditioning-in-auto-s-vanaf-2017.jpg" alt="R1234yf Kit" class="h-full w-full object-contain group-hover:scale-105 transition-transform duration-500 mix-blend-multiply">
-                    </div>
-                    <div class="inline-block bg-green-900/30 text-green-400 text-xs font-bold px-3 py-1 rounded-full mb-4 self-start" data-i18n="year-1234yf">2017 - HEDEN</div>
-                    <h3 class="text-xl font-bold mb-2 text-white" data-i18n="title-1234yf">R1234yf Gas + Slang</h3>
-                    <p class="text-slate-400 text-sm mb-8 flex-grow" data-i18n="desc-1234yf">Speciaal voor moderne auto's gebouwd na 2016. Inclusief manometer slang en speciale adapter.</p>
-                    <button onclick="openModal('R1234yf')" class="w-full bg-slate-700 group-hover:bg-green-600 text-white font-semibold py-3 rounded-lg transition-colors" data-i18n="btn-reserve">Reserveer Nu</button>
+            <h1 class="reveal delay-100 text-4xl md:text-6xl font-bold leading-tight tracking-tight mb-6">
+                <span data-i18n="title-1">IJskoude Airco.</span><br>
+                <span class="text-sky-400" data-i18n="title-2">In 10 Minuten.</span>
+            </h1>
+            
+            <p class="reveal delay-200 text-base md:text-lg text-slate-400 mb-12 max-w-2xl font-normal leading-relaxed" data-i18n="subtitle">
+                De professionele doe-het-zelf vulset. Compleet met vervangend gas en een precisiemanometer. Herstel de airco van je auto veilig thuis.
+            </p>
+
+            <div class="reveal w-full max-w-3xl mx-auto mb-16 flex flex-col items-center">
+                <div class="relative w-full aspect-video bg-slate-950 rounded-xl overflow-hidden border border-slate-800 shadow-2xl mb-4">
+                    <iframe class="absolute top-0 left-0 w-full h-full" 
+                            src="https://www.youtube.com/embed/L8BCGTkCexs?rel=0" 
+                            title="AC Doctor Installation Guide" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="inline-flex items-center gap-2 bg-slate-800/60 border border-slate-700 px-4 py-2 rounded-full text-slate-400 text-xs md:text-sm font-medium">
+                    <svg class="w-4 h-4 text-sky-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path></svg>
+                    <span data-i18n="video-caption">Officiële AC Doctor™ Installatiegids</span>
                 </div>
             </div>
-            <p class="text-xs text-slate-500 mt-6 text-center" data-i18n="cta-sub">Geen betaling vereist. Eerste batch arriveert binnenkort.</p>
-        </div>
 
-    </main>
+            <div id="order" class="reveal w-full max-w-4xl mx-auto mb-16 pt-8 border-t border-slate-800">
+                <h2 class="text-3xl font-bold text-center mb-10 text-white" data-i18n="select-title">Kies Jouw Systeem</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-slate-800/60 border border-slate-700 rounded-2xl p-6 hover:border-sky-500/50 transition-colors text-left flex flex-col group relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-full h-1 bg-sky-500"></div>
+                        <div class="aspect-[4/3] bg-white rounded-xl mb-6 flex items-center justify-center p-4 overflow-hidden">
+                            <img src="https://acdoctor.shop/195-large_default/gas-r134a-voor-airconditioning-in-auto-s-van-1994-2016.jpg" alt="R134a Kit" class="h-full w-full object-contain group-hover:scale-105 transition-transform duration-500 mix-blend-multiply">
+                        </div>
+                        <div class="inline-block bg-sky-900/40 text-sky-400 text-xs font-bold px-3 py-1 rounded-full mb-4 self-start" data-i18n="year-134a">1994 - 2016</div>
+                        <h3 class="text-xl font-bold mb-2 text-white" data-i18n="title-134a">R134a Gas + Slang</h3>
+                        <p class="text-slate-400 text-sm mb-8 flex-grow" data-i18n="desc-134a">De standaard voor auto's gebouwd tussen 1994 en 2016. Inclusief manometer slang.</p>
+                        <button onclick="openModal('R134a')" class="w-full bg-slate-700 group-hover:bg-sky-500 text-white font-semibold py-3 rounded-lg transition-colors" data-i18n="btn-reserve">Reserveer Nu</button>
+                    </div>
 
-    <footer class="reveal bg-slate-900 py-8 border-t border-slate-800 text-center text-slate-500 text-sm mt-auto relative z-10">
-        <p>&copy; 2026 VrisAirco Benelux. All rights reserved.</p>
-        <p class="mt-2 text-xs" data-i18n="footer-sub">Ontworpen voor de Europese Markt.</p>
-    </footer>
+                    <div class="bg-slate-800/60 border border-slate-700 rounded-2xl p-6 hover:border-green-500/50 transition-colors text-left flex flex-col group relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-full h-1 bg-green-500"></div>
+                        <div class="aspect-[4/3] bg-white rounded-xl mb-6 flex items-center justify-center p-4 overflow-hidden">
+                            <img src="https://acdoctor.shop/121-large_default/gas-1234yf-voor-airconditioning-in-auto-s-vanaf-2017.jpg" alt="R1234yf Kit" class="h-full w-full object-contain group-hover:scale-105 transition-transform duration-500 mix-blend-multiply">
+                        </div>
+                        <div class="inline-block bg-green-900/30 text-green-400 text-xs font-bold px-3 py-1 rounded-full mb-4 self-start" data-i18n="year-1234yf">2017 - HEDEN</div>
+                        <h3 class="text-xl font-bold mb-2 text-white" data-i18n="title-1234yf">R1234yf Gas + Slang</h3>
+                        <p class="text-slate-400 text-sm mb-8 flex-grow" data-i18n="desc-1234yf">Speciaal voor moderne auto's gebouwd na 2016. Inclusief manometer slang en speciale adapter.</p>
+                        <button onclick="openModal('R1234yf')" class="w-full bg-slate-700 group-hover:bg-green-600 text-white font-semibold py-3 rounded-lg transition-colors" data-i18n="btn-reserve">Reserveer Nu</button>
+                    </div>
+                </div>
+                <p class="text-xs text-slate-500 mt-6 text-center" data-i18n="cta-sub">Geen betaling vereist. Eerste batch arriveert binnenkort.</p>
+            </div>
 
-    <div id="orderModal" class="fixed inset-0 z-[10000] hidden items-center justify-center p-4">
+        </main>
+
+        <footer class="bg-slate-900 py-8 border-t border-slate-800 text-center text-slate-500 text-sm mt-auto w-full">
+            <p>&copy; 2026 VrisAirco Benelux. All rights reserved.</p>
+            <p class="mt-2 text-xs" data-i18n="footer-sub">Ontworpen voor de Europese Markt.</p>
+        </footer>
+
+    </div> <div id="orderModal" class="fixed inset-0 z-[1000] hidden items-center justify-center p-4">
         <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" onclick="closeModal()"></div>
         
         <div class="bg-slate-800 border border-slate-700 p-6 md:p-8 rounded-2xl w-full max-w-md relative z-10 shadow-2xl animate-modal text-left">
@@ -191,8 +198,21 @@
     </div>
 
     <script>
+        // Start scroll at top on refresh
+        window.onload = function() {
+            document.getElementById('scroll-wrapper').scrollTo(0, 0);
+        };
+
+        // NEW: Tell the camera to watch the custom scroll box, NOT the window
         document.addEventListener('DOMContentLoaded', () => {
-            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+            const scrollWrapper = document.getElementById('scroll-wrapper');
+            
+            const observerOptions = { 
+                root: scrollWrapper, 
+                rootMargin: '0px', 
+                threshold: 0.1 
+            };
+            
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -208,12 +228,12 @@
             });
         });
 
+        // Modal Logic
         function openModal(kitType = 'R134a') {
             const modal = document.getElementById('orderModal');
             modal.classList.remove('hidden');
             modal.classList.add('flex');
-            document.body.style.overflow = 'hidden'; 
-            
+            // Select correct option
             const select = document.getElementById('kitSelect');
             if (kitType === 'R134a' || kitType === 'R1234yf') {
                 select.value = kitType;
@@ -224,7 +244,6 @@
             const modal = document.getElementById('orderModal');
             modal.classList.add('hidden');
             modal.classList.remove('flex');
-            document.body.style.overflow = 'auto'; 
         }
 
         function submitOrder(e) {
@@ -241,6 +260,7 @@
             e.target.reset(); 
         }
 
+        // Multilingual Engine
         const translations = {
             nl: {
                 "nav-btn": "Reserveer",
