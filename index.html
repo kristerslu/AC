@@ -8,9 +8,15 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
         
-        html, body { 
+        /* THE ELASTIC SCROLL FIX */
+        html {
+            background-color: #0f172a; /* Matches the theme to hide gaps */
+            overscroll-behavior: none; /* Stops the hard bounce */
+        }
+        
+        body { 
             font-family: 'Inter', sans-serif; 
-            overscroll-behavior-y: none; 
+            overscroll-behavior: none; 
             background-color: #0f172a; 
         }
 
@@ -27,6 +33,15 @@
 
         .delay-100 { transition-delay: 100ms; }
         .delay-200 { transition-delay: 200ms; }
+
+        /* Modal Fade-in Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .animate-modal {
+            animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
     </style>
     <script>
         if (history.scrollRestoration) {
@@ -35,9 +50,9 @@
         window.scrollTo(0, 0);
     </script>
 </head>
-<body class="bg-slate-900 text-slate-100 flex flex-col min-h-screen">
+<body class="text-slate-100 flex flex-col min-h-screen">
 
-    <nav class="w-full bg-slate-900/95 backdrop-blur-lg fixed top-0 z-[100] border-b border-slate-800">
+    <nav class="w-full bg-slate-900/95 backdrop-blur-lg sticky top-0 z-[100] border-b border-slate-800">
         <div class="max-w-5xl mx-auto px-5 py-4 flex justify-between items-center">
             <div class="flex items-center gap-2 cursor-pointer">
                 <svg class="w-6 h-6 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -60,14 +75,14 @@
                     </div>
                 </div>
 
-                <a href="#order" data-i18n="nav-btn" class="hidden sm:inline-block bg-white hover:bg-slate-200 text-slate-900 px-5 py-2 rounded-lg font-semibold transition-colors text-sm">
+                <button onclick="openModal()" data-i18n="nav-btn" class="hidden sm:inline-block bg-white hover:bg-slate-200 text-slate-900 px-5 py-2 rounded-lg font-semibold transition-colors text-sm">
                     Reserveer
-                </a>
+                </button>
             </div>
         </div>
     </nav>
 
-    <main class="flex-grow pt-32 pb-12 px-5 flex flex-col items-center text-center max-w-4xl mx-auto">
+    <main class="flex-grow pt-16 pb-12 px-5 flex flex-col items-center text-center max-w-4xl mx-auto">
         
         <div class="reveal inline-block bg-slate-800 border border-slate-700 text-slate-300 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide mb-8 uppercase">
             <span data-i18n="launch">Benelux Lancering: Lente 2026</span>
@@ -110,7 +125,7 @@
                     <div class="inline-block bg-sky-900/40 text-sky-400 text-xs font-bold px-3 py-1 rounded-full mb-4 self-start" data-i18n="year-134a">1994 - 2016</div>
                     <h3 class="text-xl font-bold mb-2 text-white" data-i18n="title-134a">R134a Gas + Slang</h3>
                     <p class="text-slate-400 text-sm mb-8 flex-grow" data-i18n="desc-134a">De standaard voor auto's gebouwd tussen 1994 en 2016. Inclusief manometer slang.</p>
-                    <button class="w-full bg-slate-700 group-hover:bg-sky-500 text-white font-semibold py-3 rounded-lg transition-colors" data-i18n="btn-reserve">Reserveer Nu</button>
+                    <button onclick="openModal('R134a')" class="w-full bg-slate-700 group-hover:bg-sky-500 text-white font-semibold py-3 rounded-lg transition-colors" data-i18n="btn-reserve">Reserveer Nu</button>
                 </div>
 
                 <div class="bg-slate-800/60 border border-slate-700 rounded-2xl p-6 hover:border-green-500/50 transition-colors text-left flex flex-col group relative overflow-hidden">
@@ -121,7 +136,7 @@
                     <div class="inline-block bg-green-900/30 text-green-400 text-xs font-bold px-3 py-1 rounded-full mb-4 self-start" data-i18n="year-1234yf">2017 - HEDEN</div>
                     <h3 class="text-xl font-bold mb-2 text-white" data-i18n="title-1234yf">R1234yf Gas + Slang</h3>
                     <p class="text-slate-400 text-sm mb-8 flex-grow" data-i18n="desc-1234yf">Speciaal voor moderne auto's gebouwd na 2016. Inclusief manometer slang en speciale adapter.</p>
-                    <button class="w-full bg-slate-700 group-hover:bg-green-600 text-white font-semibold py-3 rounded-lg transition-colors" data-i18n="btn-reserve">Reserveer Nu</button>
+                    <button onclick="openModal('R1234yf')" class="w-full bg-slate-700 group-hover:bg-green-600 text-white font-semibold py-3 rounded-lg transition-colors" data-i18n="btn-reserve">Reserveer Nu</button>
                 </div>
             </div>
             <p class="text-xs text-slate-500 mt-6 text-center" data-i18n="cta-sub">Geen betaling vereist. Eerste batch arriveert binnenkort.</p>
@@ -134,7 +149,52 @@
         <p class="mt-2 text-xs" data-i18n="footer-sub">Ontworpen voor de Europese Markt.</p>
     </footer>
 
+    <div id="orderModal" class="fixed inset-0 z-[200] hidden items-center justify-center p-4">
+        <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" onclick="closeModal()"></div>
+        
+        <div class="bg-slate-800 border border-slate-700 p-6 md:p-8 rounded-2xl w-full max-w-md relative z-10 shadow-2xl animate-modal text-left">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            
+            <h2 class="text-2xl font-bold text-white mb-6" data-i18n="modal-title">Pre-Order Reservering</h2>
+            
+            <form onsubmit="submitOrder(event)" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1" data-i18n="modal-name">Volledige Naam</label>
+                    <input type="text" required class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-sky-500 transition-colors">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1" data-i18n="modal-email">E-mailadres</label>
+                    <input type="email" required class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-sky-500 transition-colors">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1" data-i18n="modal-car">Auto (Merk & Model)</label>
+                    <input type="text" placeholder="Bijv. Volkswagen Golf 2018" required class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-sky-500 transition-colors placeholder-slate-600">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-1" data-i18n="modal-kit">Kies Jouw Systeem</label>
+                    <div class="relative">
+                        <select id="kitSelect" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-sky-500 appearance-none transition-colors">
+                            <option value="R134a">R134a Kit (1994 - 2016)</option>
+                            <option value="R1234yf">R1234yf Kit (2017 of nieuwer)</option>
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-400">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                    </div>
+                </div>
+                
+                <button type="submit" class="w-full bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-400 hover:to-blue-500 text-white font-bold py-3.5 rounded-lg mt-6 transition-all transform hover:scale-[1.02] shadow-lg" data-i18n="modal-btn">
+                    Bevestig Reservering
+                </button>
+                <p class="text-xs text-slate-400 text-center mt-3" data-i18n="modal-note">Dit is een vrijblijvende reservering. Wij nemen contact op zodra de voorraad arriveert.</p>
+            </form>
+        </div>
+    </div>
+
     <script>
+        // Scroll Animation Observer
         document.addEventListener('DOMContentLoaded', () => {
             const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
             const observer = new IntersectionObserver((entries) => {
@@ -152,6 +212,44 @@
             });
         });
 
+        // Modal Logic
+        function openModal(kitType = 'R134a') {
+            const modal = document.getElementById('orderModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling background
+            
+            // Auto-select the correct kit dropdown based on which button they clicked
+            const select = document.getElementById('kitSelect');
+            if (kitType === 'R134a' || kitType === 'R1234yf') {
+                select.value = kitType;
+            }
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('orderModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        }
+
+        function submitOrder(e) {
+            e.preventDefault(); // Prevents page from refreshing
+            
+            // Get current language to show the right alert message
+            const lang = document.documentElement.lang;
+            const msgs = {
+                nl: "Bedankt voor je reservering! We nemen snel contact met je op.",
+                fr: "Merci pour votre réservation ! Nous vous contacterons bientôt.",
+                en: "Thank you for your reservation! We will contact you soon."
+            };
+            
+            alert(msgs[lang]);
+            closeModal();
+            e.target.reset(); // Clear the form
+        }
+
+        // Multilingual Engine
         const translations = {
             nl: {
                 "nav-btn": "Reserveer",
@@ -169,7 +267,15 @@
                 "desc-1234yf": "Speciaal voor moderne auto's gebouwd na 2016. Inclusief manometer slang en speciale adapter.",
                 "btn-reserve": "Reserveer Nu",
                 "cta-sub": "Geen betaling vereist. Eerste batch arriveert binnenkort.",
-                "footer-sub": "Ontworpen voor de Europese Markt."
+                "footer-sub": "Ontworpen voor de Europese Markt.",
+                // Modal Translations
+                "modal-title": "Pre-Order Reservering",
+                "modal-name": "Volledige Naam",
+                "modal-email": "E-mailadres",
+                "modal-car": "Auto (Merk & Model)",
+                "modal-kit": "Kies Jouw Systeem",
+                "modal-btn": "Bevestig Reservering",
+                "modal-note": "Dit is een vrijblijvende reservering. Wij nemen contact op zodra de voorraad arriveert."
             },
             fr: {
                 "nav-btn": "Précommander",
@@ -187,7 +293,15 @@
                 "desc-1234yf": "Spécialement pour les voitures modernes construites après 2016. Inclut tuyau avec manomètre et adaptateur spécial.",
                 "btn-reserve": "Réservez Maintenant",
                 "cta-sub": "Aucun paiement requis. Le premier lot arrive bientôt.",
-                "footer-sub": "Conçu pour le marché européen."
+                "footer-sub": "Conçu pour le marché européen.",
+                // Modal Translations
+                "modal-title": "Réservation de Précommande",
+                "modal-name": "Nom Complet",
+                "modal-email": "Adresse E-mail",
+                "modal-car": "Voiture (Marque et Modèle)",
+                "modal-kit": "Choisissez Votre Système",
+                "modal-btn": "Confirmer la Réservation",
+                "modal-note": "Ceci est une réservation sans engagement. Nous vous contacterons dès l'arrivée du stock."
             },
             en: {
                 "nav-btn": "Pre-Order",
@@ -205,7 +319,15 @@
                 "desc-1234yf": "Specifically for modern cars built after 2016. Includes pressure gauge hose and special adapter.",
                 "btn-reserve": "Reserve Now",
                 "cta-sub": "No payment required. First batch arriving soon.",
-                "footer-sub": "Engineered for the European Market."
+                "footer-sub": "Engineered for the European Market.",
+                // Modal Translations
+                "modal-title": "Pre-Order Reservation",
+                "modal-name": "Full Name",
+                "modal-email": "Email Address",
+                "modal-car": "Car (Make & Model)",
+                "modal-kit": "Choose Your System",
+                "modal-btn": "Confirm Reservation",
+                "modal-note": "This is a no-obligation reservation. We will contact you as soon as stock arrives."
             }
         };
 
@@ -219,6 +341,19 @@
                     el.innerHTML = translations[lang][key];
                 }
             });
+            
+            // Ensure dropdown in modal stays translated correctly if they open it
+            const select = document.getElementById('kitSelect');
+            if (lang === 'nl') {
+                select.options[0].text = "R134a Kit (1994 - 2016)";
+                select.options[1].text = "R1234yf Kit (2017 of nieuwer)";
+            } else if (lang === 'fr') {
+                select.options[0].text = "Kit R134a (1994 - 2016)";
+                select.options[1].text = "Kit R1234yf (2017 ou plus récent)";
+            } else {
+                select.options[0].text = "R134a Kit (1994 - 2016)";
+                select.options[1].text = "R1234yf Kit (2017 or newer)";
+            }
         }
     </script>
 </body>
