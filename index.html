@@ -7,14 +7,21 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-        body { font-family: 'Inter', sans-serif; }
+        
+        /* * FIX FOR DETACHING MENU:
+         * This stops iOS Safari from "rubber-banding" or stretching the page
+         * past the top menu.
+         */
+        html, body { 
+            font-family: 'Inter', sans-serif; 
+            overscroll-behavior-y: none; 
+            background-color: #0f172a; /* Force matching background */
+        }
 
-        /* UPGRADED: Snappy, energetic scroll reveal */
+        /* Snappy, energetic scroll reveal */
         .reveal {
             opacity: 0;
-            /* Starts further down and slightly smaller */
             transform: translateY(50px) scale(0.95);
-            /* Custom spring-like bezier curve for a "pop" effect */
             transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
         
@@ -127,27 +134,29 @@
 
     </main>
 
-    <footer class="bg-slate-950 py-8 border-t border-slate-800 text-center text-slate-500 text-sm mt-auto relative z-10">
+    <footer class="reveal bg-slate-950 py-8 border-t border-slate-800 text-center text-slate-500 text-sm mt-auto relative z-10">
         <p>&copy; 2026 VrisAirco Benelux. All rights reserved.</p>
         <p class="mt-2 text-xs" data-i18n="footer-sub">Ontworpen voor de Europese Markt.</p>
     </footer>
 
     <script>
-        // Scroll Animation Observer
+        // REPEATING Scroll Animation Observer
         document.addEventListener('DOMContentLoaded', () => {
             const observerOptions = {
                 root: null,
                 rootMargin: '0px',
-                // Triggers exactly when the element crosses into the bottom 10% of the screen
                 threshold: 0.1 
             };
 
-            const observer = new IntersectionObserver((entries, observer) => {
+            const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
+                        // Triggers animation when entering view
                         entry.target.classList.add('active');
-                        // Stop observing once animated so it doesn't repeat on scroll up
-                        observer.unobserve(entry.target); 
+                    } else {
+                        // REMOVES animation class when leaving view, 
+                        // so it animates again when you scroll back!
+                        entry.target.classList.remove('active');
                     }
                 });
             }, observerOptions);
