@@ -16,16 +16,15 @@
             padding: 0;
             width: 100%;
             height: 100%;
-            /* Disables standard browser scrolling completely */
             overflow: hidden; 
         }
 
         /* The custom scrolling box */
         #scroll-wrapper {
-            height: 100dvh; /* Uses dynamic viewport height for perfect mobile fit */
+            height: 100dvh; 
             width: 100%;
             overflow-y: auto;
-            -webkit-overflow-scrolling: touch; /* Butter-smooth iOS momentum scrolling */
+            -webkit-overflow-scrolling: touch; 
         }
 
         .reveal {
@@ -53,21 +52,21 @@
 </head>
 <body class="text-slate-100">
 
-    <nav class="w-full bg-slate-900/95 backdrop-blur-lg absolute top-0 left-0 z-[100] border-b border-slate-800">
+    <nav class="w-full bg-slate-950/80 backdrop-blur-xl absolute top-0 left-0 z-[100] border-b border-white/10 shadow-lg shadow-black/20">
         <div class="max-w-5xl mx-auto px-5 py-4 flex justify-between items-center">
             
             <div class="flex items-center gap-2 cursor-pointer" onclick="document.getElementById('scroll-wrapper').scrollTo({top: 0, behavior: 'smooth'})">
                 <svg class="w-6 h-6 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v18m0-18l-3 3m3-3l3 3m-3 15l-3-3m3 3l3-3M6.545 6.545l12.728 12.728m0-12.728L6.545 19.273M4.455 12H19.5m-15.045 0l3-3m-3 3l3 3m12.045-3l-3-3m3 3l-3 3"></path>
                 </svg>
-                <div class="text-xl md:text-2xl font-bold tracking-wide uppercase">
+                <div class="text-xl md:text-2xl font-bold tracking-wide uppercase drop-shadow-md">
                     VRIS<span class="text-sky-500">AIRCO</span>
                 </div>
             </div>
 
             <div class="flex items-center gap-3 md:gap-6">
                 <div class="relative">
-                    <select id="langSwitcher" onchange="changeLanguage(this.value)" class="appearance-none bg-slate-800 text-slate-200 text-sm md:text-base font-medium py-2 pl-3 pr-8 rounded-lg border border-slate-700 focus:outline-none focus:border-sky-500 cursor-pointer transition-colors relative z-10">
+                    <select id="langSwitcher" onchange="changeLanguage(this.value)" class="appearance-none bg-slate-800 text-slate-200 text-sm md:text-base font-medium py-2 pl-3 pr-8 rounded-lg border border-slate-600 focus:outline-none focus:border-sky-500 cursor-pointer transition-colors relative z-10 shadow-sm">
                         <option value="nl">NL</option>
                         <option value="fr">FR</option>
                         <option value="en">EN</option>
@@ -77,7 +76,7 @@
                     </div>
                 </div>
 
-                <button onclick="openModal()" data-i18n="nav-btn" class="hidden sm:inline-block bg-white hover:bg-slate-200 text-slate-900 px-5 py-2 rounded-lg font-semibold transition-colors text-sm">
+                <button onclick="openModal()" data-i18n="nav-btn" class="hidden sm:inline-block bg-white hover:bg-slate-200 text-slate-900 px-5 py-2 rounded-lg font-semibold transition-colors text-sm shadow-md">
                     Reserveer
                 </button>
             </div>
@@ -88,7 +87,7 @@
         
         <main class="flex-grow pt-32 pb-12 px-5 flex flex-col items-center text-center max-w-4xl mx-auto min-h-screen">
             
-            <div class="reveal inline-block bg-slate-800 border border-slate-700 text-slate-300 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide mb-8 uppercase">
+            <div class="reveal inline-block bg-slate-800 border border-slate-700 text-slate-300 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide mb-8 uppercase shadow-sm">
                 <span data-i18n="launch">Benelux Lancering: Lente 2026</span>
             </div>
 
@@ -111,7 +110,7 @@
                             allowfullscreen>
                     </iframe>
                 </div>
-                <div class="inline-flex items-center gap-2 bg-slate-800/60 border border-slate-700 px-4 py-2 rounded-full text-slate-400 text-xs md:text-sm font-medium">
+                <div class="inline-flex items-center gap-2 bg-slate-800/80 border border-slate-700 px-4 py-2 rounded-full text-slate-300 text-xs md:text-sm font-medium shadow-sm">
                     <svg class="w-4 h-4 text-sky-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path></svg>
                     <span data-i18n="video-caption">Officiële AC Doctor™ Installatiegids</span>
                 </div>
@@ -121,26 +120,26 @@
                 <h2 class="text-3xl font-bold text-center mb-10 text-white" data-i18n="select-title">Kies Jouw Systeem</h2>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="bg-slate-800/60 border border-slate-700 rounded-2xl p-6 hover:border-sky-500/50 transition-colors text-left flex flex-col group relative overflow-hidden">
+                    <div class="bg-slate-800/60 border border-slate-700 rounded-2xl p-6 hover:border-sky-500/50 transition-colors text-left flex flex-col group relative overflow-hidden shadow-lg">
                         <div class="absolute top-0 left-0 w-full h-1 bg-sky-500"></div>
-                        <div class="aspect-[4/3] bg-white rounded-xl mb-6 flex items-center justify-center p-4 overflow-hidden">
+                        <div class="aspect-[4/3] bg-white rounded-xl mb-6 flex items-center justify-center p-4 overflow-hidden shadow-inner">
                             <img src="https://acdoctor.shop/195-large_default/gas-r134a-voor-airconditioning-in-auto-s-van-1994-2016.jpg" alt="R134a Kit" class="h-full w-full object-contain group-hover:scale-105 transition-transform duration-500 mix-blend-multiply">
                         </div>
                         <div class="inline-block bg-sky-900/40 text-sky-400 text-xs font-bold px-3 py-1 rounded-full mb-4 self-start" data-i18n="year-134a">1994 - 2016</div>
                         <h3 class="text-xl font-bold mb-2 text-white" data-i18n="title-134a">R134a Gas + Slang</h3>
                         <p class="text-slate-400 text-sm mb-8 flex-grow" data-i18n="desc-134a">De standaard voor auto's gebouwd tussen 1994 en 2016. Inclusief manometer slang.</p>
-                        <button onclick="openModal('R134a')" class="w-full bg-slate-700 group-hover:bg-sky-500 text-white font-semibold py-3 rounded-lg transition-colors" data-i18n="btn-reserve">Reserveer Nu</button>
+                        <button onclick="openModal('R134a')" class="w-full bg-slate-700 group-hover:bg-sky-500 text-white font-semibold py-3 rounded-lg transition-colors shadow-md" data-i18n="btn-reserve">Reserveer Nu</button>
                     </div>
 
-                    <div class="bg-slate-800/60 border border-slate-700 rounded-2xl p-6 hover:border-green-500/50 transition-colors text-left flex flex-col group relative overflow-hidden">
+                    <div class="bg-slate-800/60 border border-slate-700 rounded-2xl p-6 hover:border-green-500/50 transition-colors text-left flex flex-col group relative overflow-hidden shadow-lg">
                         <div class="absolute top-0 left-0 w-full h-1 bg-green-500"></div>
-                        <div class="aspect-[4/3] bg-white rounded-xl mb-6 flex items-center justify-center p-4 overflow-hidden">
+                        <div class="aspect-[4/3] bg-white rounded-xl mb-6 flex items-center justify-center p-4 overflow-hidden shadow-inner">
                             <img src="https://acdoctor.shop/121-large_default/gas-1234yf-voor-airconditioning-in-auto-s-vanaf-2017.jpg" alt="R1234yf Kit" class="h-full w-full object-contain group-hover:scale-105 transition-transform duration-500 mix-blend-multiply">
                         </div>
                         <div class="inline-block bg-green-900/30 text-green-400 text-xs font-bold px-3 py-1 rounded-full mb-4 self-start" data-i18n="year-1234yf">2017 - HEDEN</div>
                         <h3 class="text-xl font-bold mb-2 text-white" data-i18n="title-1234yf">R1234yf Gas + Slang</h3>
                         <p class="text-slate-400 text-sm mb-8 flex-grow" data-i18n="desc-1234yf">Speciaal voor moderne auto's gebouwd na 2016. Inclusief manometer slang en speciale adapter.</p>
-                        <button onclick="openModal('R1234yf')" class="w-full bg-slate-700 group-hover:bg-green-600 text-white font-semibold py-3 rounded-lg transition-colors" data-i18n="btn-reserve">Reserveer Nu</button>
+                        <button onclick="openModal('R1234yf')" class="w-full bg-slate-700 group-hover:bg-green-600 text-white font-semibold py-3 rounded-lg transition-colors shadow-md" data-i18n="btn-reserve">Reserveer Nu</button>
                     </div>
                 </div>
                 <p class="text-xs text-slate-500 mt-6 text-center" data-i18n="cta-sub">Geen betaling vereist. Eerste batch arriveert binnenkort.</p>
@@ -166,20 +165,20 @@
             <form onsubmit="submitOrder(event)" class="space-y-4">
                 <div>
                     <label class="block text-sm font-medium text-slate-300 mb-1" data-i18n="modal-name">Volledige Naam</label>
-                    <input type="text" required class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-sky-500 transition-colors">
+                    <input type="text" required class="w-full bg-slate-900 border border-slate-600 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-sky-500 transition-colors shadow-inner">
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-slate-300 mb-1" data-i18n="modal-email">E-mailadres</label>
-                    <input type="email" required class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-sky-500 transition-colors">
+                    <input type="email" required class="w-full bg-slate-900 border border-slate-600 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-sky-500 transition-colors shadow-inner">
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-slate-300 mb-1" data-i18n="modal-car">Auto (Merk & Model)</label>
-                    <input type="text" placeholder="Bijv. Volkswagen Golf 2018" required class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-sky-500 transition-colors placeholder-slate-600">
+                    <input type="text" placeholder="Bijv. Volkswagen Golf 2018" required class="w-full bg-slate-900 border border-slate-600 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-sky-500 transition-colors placeholder-slate-600 shadow-inner">
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-slate-300 mb-1" data-i18n="modal-kit">Kies Jouw Systeem</label>
                     <div class="relative">
-                        <select id="kitSelect" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-sky-500 appearance-none transition-colors">
+                        <select id="kitSelect" class="w-full bg-slate-900 border border-slate-600 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-sky-500 appearance-none transition-colors shadow-inner">
                             <option value="R134a">R134a Kit (1994 - 2016)</option>
                             <option value="R1234yf">R1234yf Kit (2017 of nieuwer)</option>
                         </select>
@@ -198,12 +197,10 @@
     </div>
 
     <script>
-        // Start scroll at top on refresh
         window.onload = function() {
             document.getElementById('scroll-wrapper').scrollTo(0, 0);
         };
 
-        // NEW: Tell the camera to watch the custom scroll box, NOT the window
         document.addEventListener('DOMContentLoaded', () => {
             const scrollWrapper = document.getElementById('scroll-wrapper');
             
@@ -228,12 +225,11 @@
             });
         });
 
-        // Modal Logic
         function openModal(kitType = 'R134a') {
             const modal = document.getElementById('orderModal');
             modal.classList.remove('hidden');
             modal.classList.add('flex');
-            // Select correct option
+            
             const select = document.getElementById('kitSelect');
             if (kitType === 'R134a' || kitType === 'R1234yf') {
                 select.value = kitType;
@@ -260,7 +256,6 @@
             e.target.reset(); 
         }
 
-        // Multilingual Engine
         const translations = {
             nl: {
                 "nav-btn": "Reserveer",
