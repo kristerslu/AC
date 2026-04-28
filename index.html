@@ -6,8 +6,9 @@
     <title>VrisAirco | Premium Auto Airco Vulsets</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800;900&display=swap');
         
+        /* THE NATIVE APP ARCHITECTURE FIX */
         html, body { 
             font-family: 'Inter', sans-serif; 
             background-color: #0f172a; 
@@ -45,11 +46,6 @@
         }
         .animate-modal {
             animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-
-        /* Custom Glow Utility */
-        .text-glow {
-            text-shadow: 0 0 20px rgba(56, 189, 248, 0.6);
         }
     </style>
 </head>
@@ -94,9 +90,8 @@
                 <span data-i18n="launch">Benelux Lancering: Lente 2026</span>
             </div>
 
-            <h1 class="reveal delay-100 text-5xl md:text-7xl font-black leading-tight tracking-tight mb-6 drop-shadow-2xl">
-                <span data-i18n="title-1" class="text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]">Breng De Kou Terug.</span><br>
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-blue-300 italic drop-shadow-[0_0_25px_rgba(56,189,248,0.6)]" data-i18n="title-2">In 10 Minuten.</span>
+            <h1 class="reveal delay-100 text-5xl md:text-7xl font-black leading-tight tracking-tight mb-8 drop-shadow-2xl">
+                <span data-i18n="title-1" class="text-transparent bg-clip-text bg-gradient-to-r from-white to-sky-200 drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]">Breng De Kou Terug.</span>
             </h1>
             
             <p class="reveal delay-200 text-lg md:text-xl text-slate-200 mb-12 max-w-2xl font-medium leading-relaxed drop-shadow-md" data-i18n="subtitle">
@@ -120,7 +115,57 @@
                 </div>
             </div>
 
-            <div id="order" class="reveal w-full max-w-4xl mx-auto mb-16 pt-12 border-t border-slate-800/50">
+            <div class="reveal w-full max-w-4xl mx-auto mb-20">
+                <div class="bg-slate-900/80 border border-sky-500/30 rounded-3xl p-8 md:p-10 text-left shadow-[0_0_30px_rgba(14,165,233,0.15)] backdrop-blur-md relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-sky-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                    
+                    <h3 class="text-2xl md:text-3xl font-black mb-10 text-white tracking-wide uppercase drop-shadow-[0_0_10px_rgba(255,255,255,0.2)] text-center md:text-left" data-i18n="feat-title">Waarom Kiezen Voor Onze Sets?</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
+                        <div class="flex items-start gap-5">
+                            <div class="bg-sky-950 p-3 rounded-xl border border-sky-500/40 shadow-[0_0_15px_rgba(14,165,233,0.3)] shrink-0">
+                                <svg class="w-6 h-6 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-sky-100 mb-2 tracking-wide" data-i18n="feat-1-title">Snel & Eenvoudig</h4>
+                                <p class="text-sm text-slate-400 leading-relaxed font-medium" data-i18n="feat-1-desc">Herstel de koelcapaciteit van je auto in slechts 10 minuten, zonder speciaal gereedschap.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-5">
+                            <div class="bg-sky-950 p-3 rounded-xl border border-sky-500/40 shadow-[0_0_15px_rgba(14,165,233,0.3)] shrink-0">
+                                <svg class="w-6 h-6 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-sky-100 mb-2 tracking-wide" data-i18n="feat-2-title">Geen Ervaring Vereist</h4>
+                                <p class="text-sm text-slate-400 leading-relaxed font-medium" data-i18n="feat-2-desc">Wordt geleverd met een duidelijke, herbruikbare kleurgecodeerde manometer en instructies.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-5">
+                            <div class="bg-sky-950 p-3 rounded-xl border border-sky-500/40 shadow-[0_0_15px_rgba(14,165,233,0.3)] shrink-0">
+                                <svg class="w-6 h-6 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-sky-100 mb-2 tracking-wide" data-i18n="feat-3-title">100% Veilig & Eco</h4>
+                                <p class="text-sm text-slate-400 leading-relaxed font-medium" data-i18n="feat-3-desc">Een niet-giftige, milieuvriendelijke koolwaterstofformule die veilig is voor jouw aircosysteem.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-5">
+                            <div class="bg-sky-950 p-3 rounded-xl border border-sky-500/40 shadow-[0_0_15px_rgba(14,165,233,0.3)] shrink-0">
+                                <svg class="w-6 h-6 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-sky-100 mb-2 tracking-wide" data-i18n="feat-4-title">Kostenbesparend</h4>
+                                <p class="text-sm text-slate-400 leading-relaxed font-medium" data-i18n="feat-4-desc">Vermijd dure garagebezoeken en herlaad het systeem eenvoudig zelf thuis.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="order" class="reveal w-full max-w-4xl mx-auto mb-16 pt-8 border-t border-slate-800/50">
                 <h2 class="text-4xl font-black text-center mb-12 text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] uppercase tracking-wide" data-i18n="select-title">Kies Jouw Systeem</h2>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -282,9 +327,17 @@
                 "nav-btn": "Reserveer",
                 "launch": "Benelux Lancering: Lente 2026",
                 "title-1": "Breng De Kou Terug.",
-                "title-2": "In 10 Minuten.",
                 "subtitle": "De professionele doe-het-zelf vulset. Compleet met vervangend gas en een precisiemanometer. Herstel de airco van je auto veilig thuis.",
                 "video-caption": "Officiële AC Doctor™ Installatiegids",
+                "feat-title": "Waarom Kiezen Voor Onze Sets?",
+                "feat-1-title": "Snel & Eenvoudig",
+                "feat-1-desc": "Herstel de koelcapaciteit van je auto in slechts 10 minuten, zonder speciaal gereedschap.",
+                "feat-2-title": "Geen Ervaring Vereist",
+                "feat-2-desc": "Wordt geleverd met een duidelijke, herbruikbare kleurgecodeerde manometer en instructies.",
+                "feat-3-title": "100% Veilig & Eco",
+                "feat-3-desc": "Een niet-giftige, milieuvriendelijke koolwaterstofformule die veilig is voor jouw aircosysteem.",
+                "feat-4-title": "Kostenbesparend",
+                "feat-4-desc": "Vermijd dure garagebezoeken en herlaad het systeem eenvoudig zelf thuis.",
                 "select-title": "Kies Jouw Systeem",
                 "year-134a": "1994 - 2016",
                 "title-134a": "R134a Gas + Slang",
@@ -307,9 +360,17 @@
                 "nav-btn": "Précommander",
                 "launch": "Lancement Benelux : Printemps 2026",
                 "title-1": "Ramenez Le Froid.",
-                "title-2": "En 10 Minutes.",
                 "subtitle": "Le kit de recharge professionnel à faire soi-même. Complet avec gaz et manomètre de précision. Restaurez la climatisation de votre voiture à domicile.",
                 "video-caption": "Guide d'installation officiel AC Doctor™",
+                "feat-title": "Pourquoi Choisir Nos Kits ?",
+                "feat-1-title": "Rapide & Facile",
+                "feat-1-desc": "Restaurez la capacité de refroidissement de votre voiture en seulement 10 minutes, sans outils spéciaux.",
+                "feat-2-title": "Aucune Expérience Requise",
+                "feat-2-desc": "Livré avec un manomètre à code couleur réutilisable et des instructions claires.",
+                "feat-3-title": "100% Sûr & Éco",
+                "feat-3-desc": "Formule d'hydrocarbures non toxique et écologique, sans danger pour votre climatisation.",
+                "feat-4-title": "Économique",
+                "feat-4-desc": "Évitez les visites coûteuses au garage et rechargez le système vous-même à la maison.",
                 "select-title": "Choisissez Votre Système",
                 "year-134a": "1994 - 2016",
                 "title-134a": "Gaz R134a + Tuyau",
@@ -332,9 +393,17 @@
                 "nav-btn": "Pre-Order",
                 "launch": "Benelux Launch: Spring 2026",
                 "title-1": "Bring Back The Cold.",
-                "title-2": "In 10 Minutes.",
                 "subtitle": "The professional-grade DIY refill kit. Complete with replacement gas and a precision pressure gauge. Restore your car's AC safely at home.",
                 "video-caption": "Official AC Doctor™ Installation Guide",
+                "feat-title": "Why Choose Our Kits?",
+                "feat-1-title": "Fast & Easy",
+                "feat-1-desc": "Restore your car's cooling capacity in just 10 minutes, with no special tools required.",
+                "feat-2-title": "No Experience Needed",
+                "feat-2-desc": "Comes with a clear, reusable color-coded gauge and instructions.",
+                "feat-3-title": "100% Safe & Eco",
+                "feat-3-desc": "A non-toxic, eco-friendly hydrocarbon formula that is completely safe for your AC system.",
+                "feat-4-title": "Cost-Effective",
+                "feat-4-desc": "Avoid expensive garage visits and easily recharge the system yourself at home.",
                 "select-title": "Choose Your System",
                 "year-134a": "1994 - 2016",
                 "title-134a": "R134a Gas + Hose",
