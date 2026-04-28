@@ -46,6 +46,17 @@
         .animate-modal {
             animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
+
+        /* Native HTML Details/Summary Styling */
+        details > summary {
+            list-style: none;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+        details[open] summary ~ * {
+            animation: fadeIn 0.3s ease-in-out;
+        }
     </style>
 </head>
 <body class="text-slate-100">
@@ -164,7 +175,7 @@
                 </div>
             </div>
 
-            <div id="order" class="reveal w-full max-w-4xl mx-auto mb-16 pt-8 border-t border-slate-800/50">
+            <div id="order" class="reveal w-full max-w-4xl mx-auto pt-8 border-t border-slate-800/50">
                 <h2 class="text-4xl font-black text-center mb-12 text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] uppercase tracking-wide" data-i18n="select-title">Kies Jouw Systeem</h2>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -195,7 +206,43 @@
                     </div>
 
                 </div>
-                <p class="text-sm font-bold text-slate-400 mt-8 text-center drop-shadow-md" data-i18n="cta-sub">Geen betaling vereist. Eerste batch arriveert binnenkort.</p>
+                <p class="text-sm font-bold text-slate-400 mt-8 mb-16 text-center drop-shadow-md" data-i18n="cta-sub">Geen betaling vereist. Eerste batch arriveert binnenkort.</p>
+            </div>
+
+            <div class="reveal w-full max-w-3xl mx-auto mb-20 text-left">
+                <h3 class="text-2xl font-black mb-8 text-center text-white tracking-wide uppercase drop-shadow-[0_0_10px_rgba(255,255,255,0.2)]" data-i18n="ob-title">Twijfels? Wij Hebben De Antwoorden.</h3>
+                
+                <div class="space-y-4">
+                    <details class="group bg-slate-900/80 border border-slate-700/50 rounded-2xl open:border-sky-500/40 open:shadow-[0_0_20px_rgba(14,165,233,0.15)] transition-all duration-300">
+                        <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-5 text-sky-100">
+                            <span data-i18n="ob-1-q">Kan ik mijn airco of motor beschadigen?</span>
+                            <span class="transition group-open:rotate-180">
+                                <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                            </span>
+                        </summary>
+                        <p class="text-slate-400 mt-1 p-5 pt-0 text-sm leading-relaxed" data-i18n="ob-1-a">Absoluut niet. Onze formule is speciaal ontworpen om 100% veilig te mixen met het originele gas in je aircosysteem. Sterker nog, het bevat synthetische oliën die je compressor smeren en de levensduur verlengen.</p>
+                    </details>
+
+                    <details class="group bg-slate-900/80 border border-slate-700/50 rounded-2xl open:border-emerald-500/40 open:shadow-[0_0_20px_rgba(16,185,129,0.15)] transition-all duration-300">
+                        <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-5 text-sky-100">
+                            <span data-i18n="ob-2-q">Wat als ik per ongeluk de verkeerde set (bouwjaar) bestel?</span>
+                            <span class="transition group-open:rotate-180">
+                                <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                            </span>
+                        </summary>
+                        <p class="text-slate-400 mt-1 p-5 pt-0 text-sm leading-relaxed" data-i18n="ob-2-a">Geen zorgen! De aansluitpoorten ('Lage Druk' poorten) onder je motorkap zijn fysiek verschillend per bouwjaar. Het is letterlijk onmogelijk om de R134a slang op een R1234yf auto aan te sluiten, en vice versa. Je kunt dus geen fatale fout maken.</p>
+                    </details>
+
+                    <details class="group bg-slate-900/80 border border-slate-700/50 rounded-2xl open:border-sky-500/40 open:shadow-[0_0_20px_rgba(14,165,233,0.15)] transition-all duration-300">
+                        <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-5 text-sky-100">
+                            <span data-i18n="ob-3-q">Heb ik technische autokennis nodig om dit te doen?</span>
+                            <span class="transition group-open:rotate-180">
+                                <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                            </span>
+                        </summary>
+                        <p class="text-slate-400 mt-1 p-5 pt-0 text-sm leading-relaxed" data-i18n="ob-3-a">Nee, totaal niet. Als je de banden van je auto kunt oppompen of ruitenwisservloeistof kunt bijvullen, kun je dit ook. De slang heeft een simpele 'klik'-aansluiting en de manometer gebruikt kleurcodes (groen = vol). De instructievideo laat je exact zien waar je moet zijn.</p>
+                    </details>
+                </div>
             </div>
 
         </main>
@@ -321,19 +368,15 @@
 
             if (kitType === 'R134a') {
                 imgEl.src = "https://acdoctor.shop/195-large_default/gas-r134a-voor-airconditioning-in-auto-s-van-1994-2016.jpg";
-                
                 if(lang === 'nl') subtitleEl.innerText = "Geselecteerd: R134a Kit";
                 else if(lang === 'fr') subtitleEl.innerText = "Sélectionné : Kit R134a";
                 else subtitleEl.innerText = "Selected: R134a Kit";
-                
                 subtitleEl.className = "text-sky-400 text-sm font-black tracking-widest uppercase drop-shadow-[0_0_8px_rgba(56,189,248,0.5)] mt-1"; 
             } else {
                 imgEl.src = "https://acdoctor.shop/121-large_default/gas-1234yf-voor-airconditioning-in-auto-s-vanaf-2017.jpg";
-                
                 if(lang === 'nl') subtitleEl.innerText = "Geselecteerd: R1234yf Kit";
                 else if(lang === 'fr') subtitleEl.innerText = "Sélectionné : Kit R1234yf";
                 else subtitleEl.innerText = "Selected: R1234yf Kit";
-                
                 subtitleEl.className = "text-emerald-400 text-sm font-black tracking-widest uppercase drop-shadow-[0_0_8px_rgba(16,185,129,0.5)] mt-1"; 
             }
         }
@@ -361,6 +404,13 @@
                 "year-1234yf": "BOUWJAAR: 2017 - HEDEN",
                 "title-1234yf": "R1234yf Gas + Slang",
                 "desc-1234yf": "Is jouw auto gebouwd in 2017 of nieuwer? Dan heeft jouw aircosysteem dit moderne gas nodig. Inclusief slang en speciale adapter.",
+                "ob-title": "Twijfels? Wij Hebben De Antwoorden.",
+                "ob-1-q": "Kan ik mijn airco of motor beschadigen?",
+                "ob-1-a": "Absoluut niet. Onze formule is speciaal ontworpen om 100% veilig te mixen met het originele gas in je aircosysteem. Sterker nog, het bevat synthetische oliën die je compressor smeren en de levensduur verlengen.",
+                "ob-2-q": "Wat als ik per ongeluk de verkeerde set (bouwjaar) bestel?",
+                "ob-2-a": "Geen zorgen! De aansluitpoorten ('Lage Druk' poorten) onder je motorkap zijn fysiek verschillend per bouwjaar. Het is letterlijk onmogelijk om de R134a slang op een R1234yf auto aan te sluiten, en vice versa. Je kunt dus geen fatale fout maken.",
+                "ob-3-q": "Heb ik technische autokennis nodig om dit te doen?",
+                "ob-3-a": "Nee, totaal niet. Als je de banden van je auto kunt oppompen of ruitenwisservloeistof kunt bijvullen, kun je dit ook. De slang heeft een simpele 'klik'-aansluiting en de manometer gebruikt kleurcodes (groen = vol). De instructievideo laat je exact zien waar je moet zijn.",
                 "btn-reserve": "Reserveer Nu",
                 "cta-sub": "Geen betaling vereist. Eerste batch arriveert binnenkort.",
                 "footer-sub": "Ontworpen voor de Europese Markt.",
@@ -394,6 +444,13 @@
                 "year-1234yf": "ANNÉE : 2017 - PRÉSENT",
                 "title-1234yf": "Gaz R1234yf + Tuyau",
                 "desc-1234yf": "Votre voiture a-t-elle été fabriquée en 2017 ou après ? C'est le gaz qu'il vous faut. Inclut tuyau avec manomètre et adaptateur.",
+                "ob-title": "Des Doutes ? Nous Avons Les Réponses.",
+                "ob-1-q": "Puis-je endommager ma climatisation ou mon moteur ?",
+                "ob-1-a": "Absolument pas. Notre formule est spécialement conçue pour se mélanger en toute sécurité à 100% avec le gaz de votre système. Elle contient même des huiles synthétiques pour lubrifier votre compresseur.",
+                "ob-2-q": "Que se passe-t-il si je commande le mauvais kit par erreur ?",
+                "ob-2-a": "Pas de soucis ! Les ports de connexion sous votre capot sont physiquement différents. Il est impossible de brancher un tuyau R134a sur une voiture R1234yf. Vous ne pouvez donc faire aucune erreur fatale.",
+                "ob-3-q": "Ai-je besoin de connaissances en mécanique ?",
+                "ob-3-a": "Non. Si vous savez gonfler vos pneus, vous pouvez utiliser ce kit. Le tuyau a une simple connexion 'clic' et le manomètre utilise des codes couleurs. Notre vidéo vous montre exactement quoi faire.",
                 "btn-reserve": "Réservez Maintenant",
                 "cta-sub": "Aucun paiement requis. Le premier lot arrive bientôt.",
                 "footer-sub": "Conçu pour le marché européen.",
@@ -427,6 +484,13 @@
                 "year-1234yf": "YEAR: 2017 - PRESENT",
                 "title-1234yf": "R1234yf Gas + Hose",
                 "desc-1234yf": "Was your car manufactured in 2017 or newer? Then your car requires this gas. Includes pressure gauge hose and adapter.",
+                "ob-title": "Doubts? We Have The Answers.",
+                "ob-1-q": "Can I damage my AC or engine?",
+                "ob-1-a": "Absolutely not. Our formula is specifically designed to safely mix with your existing system. It even contains synthetic oils that lubricate your compressor and extend its life.",
+                "ob-2-q": "What if I accidentally order the wrong gas for my year?",
+                "ob-2-a": "Don't worry! The connection ports under your hood are physically different. It is literally impossible to connect the R134a hose to an R1234yf car, and vice versa. You cannot make a fatal mistake.",
+                "ob-3-q": "Do I need technical car knowledge to do this?",
+                "ob-3-a": "Not at all. If you can inflate a tire, you can do this. The hose has a simple 'click' connection, the gauge uses color codes (green = full), and our video shows you exactly where the port is located.",
                 "btn-reserve": "Reserve Now",
                 "cta-sub": "No payment required. First batch arriving soon.",
                 "footer-sub": "Engineered for the European Market.",
